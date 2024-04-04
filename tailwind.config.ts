@@ -16,6 +16,10 @@ const config: Config = {
       fontFamily: {
         sans: ['Pretendard', ...defaultTheme.fontFamily.sans],
       },
+      screens: {
+        xs: '320px',
+        ...defaultTheme.screens,
+      },
       colors: {
         gray: Array.from({ length: 10 }, (_, i) => `var(--grsc-${i}00)`) // prettier-ignore
           .reduce((gray, v, i) => Object.assign(gray, { [`${i}00`]: v }), {}),
