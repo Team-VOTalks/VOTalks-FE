@@ -14,9 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="px-5">
+      <body className="">
         <Header />
-        <section id="contents" className="m-auto min-h-full max-w-5xl pb-12 pt-16">
+        <section id="contents" className="m-auto min-h-full max-w-5xl pb-12 pt-14 sm:pt-16">
           {children}
         </section>
       </body>
