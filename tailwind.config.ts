@@ -4,6 +4,7 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 const config: Config = {
   content: [
     './src/app/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/views/**/*.{js,ts,jsx,tsx,mdx}',
     './src/widgets/**/*.{js,ts,jsx,tsx,mdx}',
     './src/features/**/*.{js,ts,jsx,tsx,mdx}',
@@ -17,10 +18,7 @@ const config: Config = {
       },
       colors: {
         gray: Array.from({ length: 10 }, (_, i) => `var(--grsc-${i}00)`) // prettier-ignore
-          .reduce(
-            (gray: { [key: string]: string }, v, i) => Object.assign(gray, { [`${i}00`]: v }),
-            {},
-          ),
+          .reduce((gray, v, i) => Object.assign(gray, { [`${i}00`]: v }), {}),
         red: {
           100: 'var(--smtc-warn-light)',
           200: 'var(--smtc-warn-sub)',
