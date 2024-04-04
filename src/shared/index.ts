@@ -1,4 +1,4 @@
-import IconPlus from './ui/icon-plus';
-import NotFound from './ui/not-found';
+import * as ui from './ui';
+import * as lib from './lib';
 
-export { NotFound, IconPlus };
+export { ui, lib };

@@ -1,7 +1,7 @@
 'use client';
 import { usePathname, useRouter } from 'next/navigation';
 import { ROUTE_OF_CREATE_FORM_TO_VOTE } from '../constants';
-import { IconPlus } from '@/shared';
+import * as Shared from '@/shared';
 
 export default function HeaderCreateVoteBtn() {
   const pathname = usePathname();
@@ -17,7 +17,7 @@ export default function HeaderCreateVoteBtn() {
       disabled={pathname === ROUTE_OF_CREATE_FORM_TO_VOTE}
       onClick={handleBtnClick}
     >
-      <IconPlus />
+      <Shared.ui.IconPlus />
       <span className="whitespace-nowrap text-sm font-medium sm:text-base">투표 만들기</span>
     </button>
   );
