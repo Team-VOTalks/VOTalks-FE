@@ -27,7 +27,7 @@
     --smtc-info-sub: #c4defc;
     --smtc-info-light: #e7f2fd;
 
-    @apply bg-gray-000 text-gray-700;
+    @apply h-full min-h-dvh w-full min-w-[280px] bg-gray-000 text-gray-700;
   }
   body.darkTheme {
     --grsc-000: #232629;
@@ -52,5 +52,18 @@
     --smtc-info: #307acf;
     --smtc-info-sub: #36567a;
     --smtc-info-light: #293748;
+  }
+}
+
+@layer components {
+  .blind {
+    @apply absolute h-px w-px overflow-hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+  }
+  @media (max-width: 540px) {
+    .remove-br > br {
+      display: inline-block;
+      content: ' ';
+    }
   }
 }
