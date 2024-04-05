@@ -1,18 +1,18 @@
 import React from 'react';
 
 export default function ThemeMenuItem({
-  icon: Icon,
+  icon,
   label,
   onClick,
 }: {
-  icon: React.FC;
+  icon: React.ReactNode;
   label: string;
   onClick: () => void;
 }) {
   return (
-    <li>
+    <li role="listitem">
       <button type="button" onClick={onClick}>
-        <Icon />
+        {icon}
         <span>{label}</span>
       </button>
     </li>

@@ -9,8 +9,9 @@ export default function ThemeMenu({ isOpen }: { isOpen: boolean }) {
       className={`
         ${isOpen ? 'visible' : 'invisible hidden'} 
         ${delayedOfVisible ? 'opacity-100' : 'opacity-0'} 
-        absolute right-0 top-10 w-40 rounded border bg-gray-000 p-2 text-base transition-opacity sm:left-0 sm:right-auto sm:top-12
+        absolute -right-2 top-10 w-40 rounded border bg-gray-000 p-2 text-base transition-opacity sm:left-0 sm:right-auto sm:top-12
       `}
+      role="list"
     >
       {/* <ThemeMenuItem />
       <ThemeMenuItem />
