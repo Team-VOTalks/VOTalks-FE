@@ -6,7 +6,7 @@ import localFont from 'next/font/local';
 export const metadata: Metadata = {
   title: 'VOTalks : 익명 투표 커뮤니티 (Vote & Talks)',
   description:
-    '익명성을 이용하여 여러분만의 의견을 솔직 담백하게 표출하고 대중들의 생각을 들어보세요!',
+    '밖에서는 말하지 못했던 여러분만의 의견을 익명성을 이용하여 솔직 담백하게 표출하고 대중들의 생각을 들어보세요!',
   keywords: [
     'VOTalks',
     'votalks',
