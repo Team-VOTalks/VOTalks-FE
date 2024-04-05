@@ -1,6 +1,6 @@
 export default function IconMoon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" width="0.8em" height="0.8em" viewBox="0 0 24 24">
       <path
         fill="currentColor"
         fillRule="evenodd"

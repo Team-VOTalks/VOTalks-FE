@@ -12,6 +12,7 @@ import IconSearch from './icon-search';
 import IconSend from './icon-send';
 import IconShare from './icon-share';
 import IconHome from './icon-home';
+import IconSetting from './icon-setting';
 
 export {
   NotFound,
@@ -28,4 +29,5 @@ export {
   IconSend,
   IconShare,
   IconHome,
+  IconSetting,
 };

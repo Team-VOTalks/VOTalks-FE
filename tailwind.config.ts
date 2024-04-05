@@ -20,6 +20,10 @@ const config: Config = {
         xs: '320px',
         ...defaultTheme.screens,
       },
+      backgroundImage: {
+        'logo-light': 'url("/img/votalks-logo-light.svg")',
+        'logo-dark': 'url("/img/votalks-logo-dark.svg")',
+      },
       colors: {
         gray: Array.from({ length: 10 }, (_, i) => `var(--grsc-${i}00)`) // prettier-ignore
           .reduce((gray, v, i) => Object.assign(gray, { [`${i}00`]: v }), {}),

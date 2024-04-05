@@ -7,13 +7,17 @@ export default function ThemeMenuItem({
 }: {
   icon: React.ReactNode;
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
 }) {
   return (
-    <li role="listitem">
-      <button type="button" onClick={onClick}>
-        {icon}
-        <span>{label}</span>
+    <li className="block" role="listitem">
+      <button
+        type="button"
+        className="flex w-full items-center justify-start gap-1 rounded bg-gray-000 p-2 active:bg-gray-100 sm:gap-2 sm:text-lg sm:hover:bg-gray-100 sm:active:bg-gray-000"
+        onClick={onClick}
+      >
+        <span className="flex h-5 w-5 items-center justify-center">{icon}</span>
+        <span className="text-sm sm:text-base">{label}</span>
       </button>
     </li>
   );
