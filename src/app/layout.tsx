@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './index.css';
 import { Header } from '@/widgets';
+import localFont from 'next/font/local';
 
 export const metadata: Metadata = {
   title: 'VOTalks : Vote & Talks',
@@ -13,8 +14,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className="">
+    <html lang="ko" className={`${pretendard.variable}`}>
+      <body>
         <Header />
         <section id="contents" className="m-auto min-h-full max-w-5xl pb-12 pt-14 sm:pt-16">
           {children}
@@ -23,3 +24,40 @@ export default function RootLayout({
     </html>
   );
 }
+
+const pretendard = localFont({
+  src: [
+    {
+      path: './font/Pretendard-Bold.woff',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: './font/Pretendard-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: './font/Pretendard-Medium.woff',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: './font/Pretendard-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: './font/Pretendard-Regular.woff',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './font/Pretendard-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+  display: 'swap',
+  variable: '--font-pretendard',
+});

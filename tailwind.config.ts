@@ -14,7 +14,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Pretendard', ...defaultTheme.fontFamily.sans],
+        sans: ['var(--font-pretendard)', '"Pretendard"', ...defaultTheme.fontFamily.sans],
       },
       screens: {
         xs: '320px',
