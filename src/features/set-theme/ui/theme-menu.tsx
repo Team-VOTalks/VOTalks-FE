@@ -1,7 +1,13 @@
-import ThemeMenuItem from './theme-menu-item';
+import { Theme } from '../types/theme';
 import * as Shared from '@/shared';
 
-export default function ThemeMenu({ isOpen }: { isOpen: boolean }) {
+export default function ThemeMenu({
+  isOpen,
+  setTheme,
+}: {
+  isOpen: boolean;
+  setTheme: (theme: Theme) => void;
+}) {
   const delayedOfVisible = Shared.lib.useDelayForTransition(isOpen, 100);
 
   return (
@@ -13,9 +19,22 @@ export default function ThemeMenu({ isOpen }: { isOpen: boolean }) {
       `}
       role="list"
     >
-      <ThemeMenuItem label="시스템 설정 사용" icon={<Shared.ui.IconSetting />} />
-      <ThemeMenuItem label="밝은 테마" icon={<Shared.ui.IconSun />} />
-      <ThemeMenuItem label="어두운 테마" icon={<Shared.ui.IconMoon />} />
+      {[
+        ['시스템 설정 사용', <Shared.ui.IconSetting />, () => setTheme('system')],
+        ['밝은 테마', <Shared.ui.IconSun />, () => setTheme('light')],
+        ['어두운 테마', <Shared.ui.IconMoon />, () => setTheme('dark')],
+      ].map(([label, icon, event]) => (
+        <li className="block" role="listitem" key={label as string}>
+          <button
+            type="button"
+            className="flex w-full items-center justify-start gap-1 rounded bg-gray-000 p-2 active:bg-gray-100 sm:gap-2 sm:text-lg sm:hover:bg-gray-100 sm:active:bg-gray-000"
+            onClick={event as () => void}
+          >
+            <span className="flex h-5 w-5 items-center justify-center">{icon as JSX.Element}</span>
+            <span className="text-sm sm:text-base">{label as string}</span>
+          </button>
+        </li>
+      ))}
     </ul>
   );
 }

@@ -38,6 +38,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className={`${pretendard.variable}`}>
       <body>
+        <script src="/script/theme.js"></script>
         <Header />
         <section id="contents" className="mx-auto mb-auto h-auto w-full max-w-5xl pt-14 sm:pt-16">
           {children}
