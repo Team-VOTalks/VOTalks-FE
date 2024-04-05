@@ -10,6 +10,7 @@ export default function HeaderCreateVoteBtn() {
   return (
     <Link
       href={ROUTE_OF_CREATE_FORM_TO_VOTE}
+      title="투표 만들기"
       className={`
         ${pathname === ROUTE_OF_CREATE_FORM_TO_VOTE ? 'pointer-events-none' : ''}
         flex items-center justify-center gap-1 rounded bg-blue-500 p-2 pr-3 text-lg text-white disabled:bg-gray-200 sm:text-xl
