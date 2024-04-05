@@ -15,7 +15,7 @@ export default function ThemeMenu({
       className={`
         ${isOpen ? 'visible' : 'invisible hidden'} 
         ${delayedOfVisible ? 'opacity-100' : 'opacity-0'} 
-        absolute -right-3 top-10 w-40 rounded border bg-gray-000 p-1 text-base transition-opacity sm:left-0 sm:right-auto sm:top-12 sm:w-44 sm:p-2
+        absolute -left-6 top-10 w-40 rounded border bg-gray-000 p-1 text-base transition-opacity sm:-left-3 sm:top-12 sm:w-44 sm:p-2
       `}
       role="list"
     >

@@ -16,18 +16,30 @@ function getCurrentTheme() {
 
 export default function useTheme() {
   const [currentTheme, setCurrentTheme] = useState<Theme>(getCurrentTheme());
-  const realTheme: Theme = getCurrentTheme() === 'dark' ? 'dark' : 'light';
+  const [realTheme, setRealTheme] = useState<'light' | 'dark'>('light');
+
+  const setLightTheme = () => {
+    document.body.classList.remove('darkTheme');
+    document.body.classList.add('lightTheme');
+    setRealTheme('light');
+  };
+  const setDarkTheme = () => {
+    document.body.classList.remove('lightTheme');
+    document.body.classList.add('darkTheme');
+    setRealTheme('dark');
+  };
 
   useEffect(() => {
-    document.body.classList.remove('lightTheme');
-    document.body.classList.remove('darkTheme');
-
-    if (currentTheme === 'light') {
-      document.body.classList.add('lightTheme');
-    }
     if (currentTheme === 'dark') {
-      document.body.classList.add('darkTheme');
+      setDarkTheme();
+      return;
     }
+    if (currentTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setDarkTheme();
+      return;
+    }
+    setLightTheme();
+    return;
   }, [currentTheme]);
 
   const setTheme = useCallback((theme: Theme) => {

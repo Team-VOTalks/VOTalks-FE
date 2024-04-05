@@ -19,19 +19,13 @@ export default function ThemeBtn() {
     <div className="relative" ref={themeBtnAreaRef}>
       <button
         type="button"
-        className="flex items-center justify-center gap-1 rounded bg-gray-100 p-2 text-lg disabled:bg-gray-200 sm:pl-3 sm:text-xl"
+        className="flex h-[34px] items-center justify-center gap-1 rounded bg-gray-100 p-2 text-lg disabled:bg-gray-200 sm:h-10 sm:pl-3 sm:text-xl"
         onClick={handleToggleMenu}
         title="테마 변경"
         role="button"
       >
-        {realTheme === 'dark' ? <Shared.ui.IconMoon /> : <Shared.ui.IconSun />}
-        <span
-          className={`
-            ${realTheme === 'dark' ? 'ml-1' : ''} 
-            hidden whitespace-nowrap text-sm font-medium sm:block sm:text-base
-          `}
-        >
-          테마
+        <span className="flex h-auto w-5 items-center justify-center">
+          {realTheme === 'dark' ? <Shared.ui.IconMoon /> : <Shared.ui.IconSun />}
         </span>
         <Shared.ui.IconDropdownAppearance isRotate={isOpen} />
       </button>
