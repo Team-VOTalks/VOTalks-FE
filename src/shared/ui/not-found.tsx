@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import IconHome from './icon-home';
+import { ADMIN_EMAIL } from '../constants';
 
 export default function NotFound() {
   return (
@@ -20,7 +21,7 @@ export default function NotFound() {
         찾으시고자 하는 페이지가 삭제되었거나 이동되었을 수 있습니다. <br />
         주소를 한 번 더 확인해 주시고, 동일한 증상이 지속적으로 나타나는 경우{' '}
         <br className="target" />
-        관리자(chanlee1007@naver.com)에게 문의하여 주십시오.
+        관리자({ADMIN_EMAIL})에게 문의하여 주십시오.
       </p>
       <Link
         href="/"

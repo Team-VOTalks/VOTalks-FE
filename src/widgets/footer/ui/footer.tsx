@@ -1,3 +1,5 @@
+import * as Shared from '@/shared';
+
 export default function Footer() {
   return (
     <footer>
@@ -5,7 +7,9 @@ export default function Footer() {
         <li className="break-keep text-center sm:text-left">
           &copy; 2024. Team-VOTalks all rights reserved.
         </li>
-        <li className="break-keep text-center sm:text-left">관리자 : chanlee1007@naver.com</li>
+        <li className="break-keep text-center sm:text-left">
+          관리자 : {Shared.constants.ADMIN_EMAIL}
+        </li>
       </ul>
     </footer>
   );
