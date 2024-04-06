@@ -1,8 +1,13 @@
 import type { Metadata } from 'next';
 import { Footer, Header } from '@/widgets';
+import initMSW from '@/__mocks__';
 
 import './static/style/index.css';
 import './static/style/font.css';
+
+if (process.env.NODE_ENV !== 'production') {
+  initMSW();
+}
 
 export const metadata: Metadata = {
   title: 'VOTalks : 익명 투표 커뮤니티 (Vote & Talks)',
