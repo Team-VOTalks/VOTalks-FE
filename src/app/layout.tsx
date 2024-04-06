@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
-import './static/style/index.css';
 import { Footer, Header } from '@/widgets';
-import localFont from 'next/font/local';
+
+import './static/style/index.css';
+import './static/style/font.css';
 
 export const metadata: Metadata = {
   title: 'VOTalks : 익명 투표 커뮤니티 (Vote & Talks)',
@@ -36,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${pretendard.variable}`}>
+    <html lang="ko">
       <body>
         <script src="/script/theme.js"></script>
         <Header />
@@ -48,40 +49,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-const pretendard = localFont({
-  src: [
-    {
-      path: './static/font/Pretendard-Bold.woff',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: './static/font/Pretendard-Bold.woff2',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: './static/font/Pretendard-Medium.woff',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: './static/font/Pretendard-Medium.woff2',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: './static/font/Pretendard-Regular.woff',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: './static/font/Pretendard-Regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-  ],
-  display: 'swap',
-  variable: '--font-pretendard',
-});
