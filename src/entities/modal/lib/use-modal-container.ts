@@ -15,5 +15,5 @@ export default function useModalContainer(isActive: boolean) {
     return;
   }, [isActive]);
 
-  return delayedOpen;
+  return { delayedOpen };
 }
