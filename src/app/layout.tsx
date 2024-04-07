@@ -48,6 +48,7 @@ export default function RootLayout({
         <Header />
         <section id="contents" className="mx-auto mb-auto h-auto w-full max-w-5xl pt-14 sm:pt-16">
           {children}
+          <div id="modal-root"></div>
         </section>
         <Footer />
       </body>

@@ -13,6 +13,7 @@ import IconSend from './icon-send';
 import IconShare from './icon-share';
 import IconHome from './icon-home';
 import IconSetting from './icon-setting';
+import SpinnerBar from './spinner-bar';
 
 export {
   NotFound,
@@ -30,4 +31,5 @@ export {
   IconShare,
   IconHome,
   IconSetting,
+  SpinnerBar,
 };
