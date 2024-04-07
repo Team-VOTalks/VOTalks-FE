@@ -20,8 +20,8 @@ export default function CommonModal({
   if (typeof window === 'undefined') return <></>;
   return createPortal(
     <ModalContainer isOpen={isOpen}>
-      <div className="block h-auto w-full">
-        {content}
+      <div className="flex h-auto min-h-48 w-full flex-col items-stretch justify-between">
+        <div>{content}</div>
         <p className="mt-6 flex items-center justify-between gap-3 border-t pt-3 sm:justify-end">
           <button
             type="button"
