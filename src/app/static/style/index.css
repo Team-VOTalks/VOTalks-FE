@@ -53,8 +53,11 @@
     --smtc-info-sub: #36567a;
     --smtc-info-light: #293748;
   }
+  body.stopScroll {
+    @apply touch-none overflow-hidden;
+  }
   .logo {
-    @apply bg-logo-light bg-transparent bg-contain bg-center bg-no-repeat transition-[background];
+    @apply bg-transparent bg-logo-light bg-contain bg-center bg-no-repeat transition-[background];
   }
   body.darkTheme .logo {
     @apply bg-logo-dark;
