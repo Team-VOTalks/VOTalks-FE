@@ -3,15 +3,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Theme } from '../types/theme';
 
-function getCurrentTheme() {
-  let theme: Theme = 'system';
-  if (typeof window !== 'undefined') {
-    theme = (window.localStorage.getItem('theme') as Theme | null) ?? 'system';
-    if (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      theme = 'dark';
-    }
+function getCurrentTheme(): Theme {
+  if (typeof window === 'undefined') {
+    return 'system';
   }
-  return theme;
+  return (localStorage.getItem('theme') as Theme | null) ?? 'system';
 }
 
 export default function useTheme() {
