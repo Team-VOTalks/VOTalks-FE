@@ -26,6 +26,7 @@ export default function NotFound() {
       <Link
         href="/"
         className="flex items-center justify-center gap-1 rounded bg-blue-500 py-2 pl-4 pr-5 text-xl text-white sm:text-2xl"
+        title="메인페이지 이동"
       >
         <IconHome />
         <span className="text-base font-normal sm:text-lg">메인으로</span>
