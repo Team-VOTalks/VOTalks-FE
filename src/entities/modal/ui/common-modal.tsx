@@ -26,7 +26,7 @@ export default function CommonModal({
           <button
             type="button"
             title="취소"
-            className="block min-w-20 rounded bg-gray-100 p-2 text-sm font-medium text-gray-600 sm:w-auto sm:text-base"
+            className="block min-w-20 rounded bg-gray-100 p-2 text-sm font-medium sm:w-auto sm:text-base"
             onClick={() => {
               if (reject !== undefined) reject();
               closeModal();
@@ -37,7 +37,7 @@ export default function CommonModal({
           <button
             type="button"
             title="확인"
-            className="block min-w-20 flex-grow rounded bg-blue-100 p-2 text-sm font-medium text-blue-500 sm:w-auto sm:flex-grow-0 sm:text-base"
+            className="block min-w-20 flex-grow rounded bg-blue-500 p-2 text-sm font-medium text-white sm:w-auto sm:flex-grow-0 sm:text-base"
             onClick={() => {
               if (resolve !== undefined) resolve();
               closeModal();
