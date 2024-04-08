@@ -8,7 +8,7 @@ import { Theme } from '../types/theme';
 
 export default function ThemeBtn() {
   const { isOpen, handleToggleMenu, themeBtnAreaRef } = useThemeBtnDropdown();
-  const { realTheme, setTheme } = useTheme();
+  const { currentTheme, realTheme, setTheme } = useTheme();
 
   const setCurrentTheme = useCallback((theme: Theme) => {
     setTheme(theme);
@@ -29,7 +29,7 @@ export default function ThemeBtn() {
         </span>
         <Shared.ui.IconDropdownAppearance isRotate={isOpen} />
       </button>
-      <ThemeMenu isOpen={isOpen} setTheme={setCurrentTheme} />
+      <ThemeMenu isOpen={isOpen} currentTheme={currentTheme} setTheme={setCurrentTheme} />
     </div>
   );
 }

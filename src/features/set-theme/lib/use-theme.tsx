@@ -43,5 +43,5 @@ export default function useTheme() {
     localStorage.setItem('theme', theme);
   }, []);
 
-  return { realTheme, setTheme };
+  return { currentTheme, realTheme, setTheme };
 }
