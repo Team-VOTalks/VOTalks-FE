@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Footer, Header } from '@/widgets';
+import * as Shared from '@/shared';
 import initMSW from '@/__mocks__';
 
 import './static/style/index.css';
@@ -45,12 +46,15 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <script src="/script/theme.js"></script>
-        <Header />
-        <section id="contents" className="mx-auto mb-auto h-auto w-full max-w-5xl pt-14 sm:pt-16">
-          {children}
-          <div id="modal-root"></div>
-        </section>
-        <Footer />
+        <Shared.utils.QueryProvider>
+          <Header />
+          <section id="contents" className="mx-auto mb-auto h-auto w-full max-w-5xl pt-14 sm:pt-16">
+            {children}
+            <div id="modal-root"></div>
+            <Shared.utils.ToastProvier />
+          </section>
+          <Footer />
+        </Shared.utils.QueryProvider>
       </body>
     </html>
   );
