@@ -5,31 +5,31 @@ import { createPortal } from 'react-dom';
 import ModalContainer from './modal-container';
 
 export default function CommonModal({
-  content,
+  children: content,
   isOpen,
-  setIsOpen,
+  closeModal,
   resolve,
   reject,
 }: {
-  content: ReactNode;
+  children: ReactNode;
   isOpen: boolean;
-  setIsOpen: () => void;
+  closeModal: () => void;
   resolve?: () => void;
   reject?: () => void;
 }) {
   if (typeof window === 'undefined') return <></>;
   return createPortal(
     <ModalContainer isOpen={isOpen}>
-      <div className="flex h-auto min-h-48 w-full flex-col items-stretch justify-between">
+      <div className="flex h-auto min-h-40 w-full flex-col items-stretch justify-between">
         <div>{content}</div>
-        <p className="mt-6 flex items-center justify-between gap-3 border-t pt-3 sm:justify-end">
+        <p className="mt-4 flex items-center justify-between gap-3 border-t pt-3 sm:justify-end">
           <button
             type="button"
             title="취소"
             className="block min-w-20 rounded bg-gray-100 p-2 text-sm font-medium text-gray-600 sm:w-auto sm:text-base"
             onClick={() => {
               if (reject !== undefined) reject();
-              setIsOpen();
+              closeModal();
             }}
           >
             취소
@@ -40,7 +40,7 @@ export default function CommonModal({
             className="block min-w-20 flex-grow rounded bg-blue-100 p-2 text-sm font-medium text-blue-500 sm:w-auto sm:flex-grow-0 sm:text-base"
             onClick={() => {
               if (resolve !== undefined) resolve();
-              setIsOpen();
+              closeModal();
             }}
           >
             확인
