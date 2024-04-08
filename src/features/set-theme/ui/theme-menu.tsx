@@ -21,23 +21,26 @@ export default function ThemeMenu({
       `}
       role="list"
     >
-      {[
-        ['system', '시스템 테마', <Shared.ui.IconSetting />],
-        ['light', '밝은 테마', <Shared.ui.IconSun />],
-        ['dark', '어두운 테마', <Shared.ui.IconMoon />],
-      ].map(([theme, label, icon]) => (
-        <li className="block" role="listitem" key={label as string}>
+      {(
+        [
+          ['system', '시스템 테마', <Shared.ui.IconSetting />],
+          ['light', '밝은 테마', <Shared.ui.IconSun />],
+          ['dark', '어두운 테마', <Shared.ui.IconMoon />],
+        ] as Array<[Theme, string, JSX.Element]>
+      ).map(([theme, label, icon]) => (
+        <li className="block" role="listitem" key={label}>
           <button
             type="button"
+            title={`${label} 사용`}
             className="flex w-full items-center justify-start gap-1 rounded bg-gray-000 p-2 active:bg-gray-100 sm:gap-2 sm:text-lg sm:hover:bg-gray-100 sm:active:bg-gray-000"
-            onClick={() => setTheme(theme as Theme)}
+            onClick={() => setTheme(theme)}
           >
-            <span className="flex h-5 w-5 items-center justify-center">{icon as JSX.Element}</span>
-            <span className="whitespace-nowrap text-sm sm:text-base">
-              {label as string}
-              <span className="inline text-xs text-gray-500 sm:text-sm">
-                {currentTheme === (theme as Theme) && ' (선택됨)'}
-              </span>
+            <span className="flex h-5 w-5 items-center justify-center">{icon}</span>
+            <span className="whitespace-nowrap text-sm font-medium sm:text-base">
+              {label}
+              <small className="inline text-sm font-normal text-gray-500">
+                {currentTheme === theme && ' (선택됨)'}
+              </small>
             </span>
           </button>
         </li>
