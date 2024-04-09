@@ -1,71 +1,19 @@
 import * as Shared from '@/shared';
-import { MAX_OPTION_LENGTH, MIN_SELECT_COUNT } from '../constants';
+import { MAX_OPTION_LENGTH } from '../constants';
 
 export default function VoteFormSelection({
   optionInputValues,
   addOptionInput,
   removeOptionInput,
   changeOptionInputValue,
-  selectCount,
-  upperSelectCount,
-  lowerSelectCount,
-  increaseSelectCount,
-  decreaseSelectCount,
-  allowMultipleSelection,
-  toggleAllowMultipleSelection,
 }: {
   optionInputValues: string[];
   addOptionInput: () => void;
   removeOptionInput: (inputIdx: number) => void;
   changeOptionInputValue: (inputValue: string, inputIdx: number) => void;
-  selectCount: number;
-  upperSelectCount: boolean;
-  lowerSelectCount: boolean;
-  increaseSelectCount: () => void;
-  decreaseSelectCount: () => void;
-  allowMultipleSelection: boolean;
-  toggleAllowMultipleSelection: () => void;
 }) {
   return (
-    <>
-      <div className="flex flex-wrap items-end justify-between gap-x-5">
-        <Shared.ui.FormLabel>투표 선택지</Shared.ui.FormLabel>
-        <div className="mb-2 flex items-center justify-center gap-2">
-          {allowMultipleSelection && (
-            <div className="flex items-center justify-end rounded border">
-              <button
-                type="button"
-                className="border-r px-3 py-1 disabled:text-gray-500"
-                disabled={lowerSelectCount}
-                onClick={decreaseSelectCount}
-              >
-                -
-              </button>
-              <p className="w-8 whitespace-nowrap text-center text-sm">{selectCount}</p>
-              <button
-                type="button"
-                className="border-l px-3 py-1 disabled:text-gray-500"
-                disabled={upperSelectCount}
-                onClick={increaseSelectCount}
-              >
-                +
-              </button>
-            </div>
-          )}
-          <button
-            type="button"
-            className={`
-              ${allowMultipleSelection ? 'border-blue-200 bg-blue-100 text-blue-500' : 'bg-gray-000'}
-              flex h-[34px] items-center justify-center gap-1 whitespace-nowrap rounded border py-1 pl-2 pr-3 transition-colors disabled:text-gray-500
-            `}
-            disabled={optionInputValues.length + 1 < MIN_SELECT_COUNT}
-            onClick={toggleAllowMultipleSelection}
-          >
-            <Shared.ui.IconCheck />
-            <span className="text-sm">복수 선택</span>
-          </button>
-        </div>
-      </div>
+    <div>
       <ul>
         <li className="peerList relative peer-[List]:mt-2">
           <Shared.ui.FormInput id="option-1" placeholder="선택지1을 입력해주세요" />
@@ -105,6 +53,6 @@ export default function VoteFormSelection({
           <span>선택지 추가</span>
         </button>
       )}
-    </>
+    </div>
   );
 }

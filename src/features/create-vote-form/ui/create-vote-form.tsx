@@ -13,13 +13,6 @@ export default function CreateVoteForm() {
     addOptionInput,
     removeOptionInput,
     changeOptionInputValue,
-    selectCount,
-    upperSelectCount,
-    lowerSelectCount,
-    increaseSelectCount,
-    decreaseSelectCount,
-    allowMultipleSelection,
-    toggleAllowMultipleSelection,
   } = useVoteForm();
 
   return (
@@ -47,18 +40,12 @@ export default function CreateVoteForm() {
             />
           </Shared.ui.FormFieldset>
           <Shared.ui.FormFieldset>
+            <Shared.ui.FormLabel>투표 선택지</Shared.ui.FormLabel>
             <VoteFormSelection
               optionInputValues={optionInputValues}
               addOptionInput={addOptionInput}
               removeOptionInput={removeOptionInput}
               changeOptionInputValue={changeOptionInputValue}
-              selectCount={selectCount}
-              upperSelectCount={upperSelectCount}
-              lowerSelectCount={lowerSelectCount}
-              increaseSelectCount={increaseSelectCount}
-              decreaseSelectCount={decreaseSelectCount}
-              allowMultipleSelection={allowMultipleSelection}
-              toggleAllowMultipleSelection={toggleAllowMultipleSelection}
             />
           </Shared.ui.FormFieldset>
         </div>
