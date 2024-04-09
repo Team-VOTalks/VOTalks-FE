@@ -1,13 +1,17 @@
-export default function GuideTxt({
-  content,
-  color,
-}: {
-  content: string;
-  color?: 'red' | 'yellow' | 'green' | 'blue';
-}) {
+type GuideColor = 'red' | 'yellow' | 'green' | 'blue' | 'gray';
+
+const colorStyles: { [color in GuideColor]: string } = {
+  red: 'text-red-500',
+  yellow: 'text-yellow-500',
+  green: 'text-green-500',
+  blue: 'text-blue-500',
+  gray: 'text-gray-500',
+};
+
+export default function GuideTxt({ content, color }: { content: string; color?: GuideColor }) {
   return (
     <p
-      className={`block text-${color ?? 'gray'}-500 relative mt-1 break-keep px-1 text-lg leading-4`}
+      className={`${colorStyles[color ?? 'gray']} relative mt-1 break-keep px-1 text-lg leading-4`}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

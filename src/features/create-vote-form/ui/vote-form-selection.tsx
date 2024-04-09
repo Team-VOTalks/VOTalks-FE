@@ -1,48 +1,53 @@
 import * as Shared from '@/shared';
 import { MAX_OPTION_LENGTH } from '../constants';
+import { type FieldErrors, type UseFormRegister } from 'react-hook-form';
+import { type CreateVoteFormValues } from '../types';
 
 export default function VoteFormSelection({
-  optionInputValues,
+  optionInputFields,
   addOptionInput,
   removeOptionInput,
-  changeOptionInputValue,
+  register,
+  errors,
 }: {
-  optionInputValues: string[];
+  optionInputFields: Record<'id', string>[];
   addOptionInput: () => void;
   removeOptionInput: (inputIdx: number) => void;
-  changeOptionInputValue: (inputValue: string, inputIdx: number) => void;
+  register: UseFormRegister<CreateVoteFormValues>;
+  errors: FieldErrors<CreateVoteFormValues>;
 }) {
   return (
     <div>
       <ul>
-        <li className="peerList relative peer-[List]:mt-2">
-          <Shared.ui.FormInput id="option-1" placeholder="선택지1을 입력해주세요" />
-        </li>
-        <li className="peerList relative peer-[List]:mt-2">
-          <Shared.ui.FormInput id="option-2" placeholder="선택지2을 입력해주세요" />
-        </li>
-        {optionInputValues.map((inputValue, idx) => (
-          <li className="peerList relative peer-[List]:mt-2" key={`option-${idx + 3}`}>
+        {optionInputFields.map((field, idx) => (
+          <li className="peerList relative peer-[List]:mt-2" key={field.id}>
             <Shared.ui.FormInput
-              id={`option-${idx + 3}`}
-              placeholder={`선택지${idx + 3}을 입력해주세요`}
-              hasDeleteBtn
-              value={inputValue}
-              onChange={e => changeOptionInputValue(e.target.value, idx)}
+              placeholder={`선택지${idx + 1}을 입력해주세요`}
+              isError={errors.options?.[idx]?.value}
+              {...register(`options.${idx}.value` as const, {
+                required: `선택지 ${idx + 1}을 입력해주세요`,
+                maxLength: { value: 20, message: '선택지는 20자 이상 입력할 수 없습니다' },
+              })}
+              hasDeleteBtn={idx >= 2}
             />
-            <button
-              type="button"
-              title={`선택지${idx + 3} 삭제`}
-              className="absolute bottom-0 right-0 top-0 my-auto inline-flex w-10 items-center justify-center rounded text-xl text-gray-600"
-              onClick={() => removeOptionInput(idx)}
-            >
-              <Shared.ui.IconDelete />
-              <span className="blind">{`선택지${idx + 3} 삭제`}</span>
-            </button>
+            {idx >= 2 && (
+              <button
+                type="button"
+                title={`선택지${idx + 1} 삭제`}
+                className="absolute right-0 top-0 my-auto inline-flex h-[42px] w-10 items-center justify-center rounded text-xl text-gray-600"
+                onClick={() => removeOptionInput(idx)}
+              >
+                <Shared.ui.IconDelete />
+                <span className="blind">{`선택지${idx + 1} 삭제`}</span>
+              </button>
+            )}
+            {errors.options?.[idx]?.value !== undefined && (
+              <Shared.ui.GuideTxt content={errors.options[idx]!.value!.message!} color="red" />
+            )}
           </li>
         ))}
       </ul>
-      {optionInputValues.length < MAX_OPTION_LENGTH - 2 && (
+      {optionInputFields.length < MAX_OPTION_LENGTH && (
         <button
           type="button"
           title="선택지 추가"

@@ -7,45 +7,62 @@ import VoteFormSelection from './vote-form-selection';
 
 export default function CreateVoteForm() {
   const {
-    currentCategory,
-    setCurrentCategory,
-    optionInputValues,
+    optionInputFields,
     addOptionInput,
     removeOptionInput,
-    changeOptionInputValue,
+    register,
+    watch,
+    handleFormSubmit,
+    errors,
   } = useVoteForm();
 
   return (
     <div className="mx-auto flex w-full flex-grow pt-5">
-      <form className="flex flex-grow flex-col items-stretch justify-between">
+      <form
+        className="flex flex-grow flex-col items-stretch justify-between"
+        onSubmit={handleFormSubmit}
+      >
         <div className="mb-auto flex-grow">
           <Shared.ui.FormFieldset>
             <Shared.ui.FormLabel htmlFor="category">투표 카테고리</Shared.ui.FormLabel>
-            <VoteFormCategory
-              currentCategory={currentCategory}
-              setCurrentCategory={setCurrentCategory}
-            />
+            <VoteFormCategory currentCategory={watch('category')} register={register} />
+            {errors.category && (
+              <Shared.ui.GuideTxt content={errors.category.message!} color="red" />
+            )}
             <Shared.ui.GuideTxt content="카테고리는 서비스 정책에 따라 이동 또는 변경될 수 있습니다" />
           </Shared.ui.FormFieldset>
           <Shared.ui.FormFieldset>
             <legend className="blind">제목 및 설명</legend>
             <Shared.ui.FormLabel htmlFor="title">투표 제목</Shared.ui.FormLabel>
-            <Shared.ui.FormInput id="title" name="title" placeholder="투표 제목을 입력해주세요" />
+            <Shared.ui.FormInput
+              type="text"
+              placeholder="투표 제목을 입력해주세요"
+              isError={errors.title}
+              {...register('title', {
+                required: '투표 제목을 입력해주세요',
+                maxLength: { value: 100, message: '제목은 100자 이상 입력할 수 없습니다' },
+              })}
+            />
+            {errors.title && <Shared.ui.GuideTxt content={errors.title.message!} color="red" />}
             <Shared.ui.FormLabel htmlFor="description">투표 설명 (선택)</Shared.ui.FormLabel>
             <Shared.ui.FormTextarea
-              name="description"
-              id="description"
               placeholder="투표 설명을 입력해주세요"
-              autoComplete="off"
+              {...register('description', {
+                maxLength: { value: 300, message: '설명은 300자 이상 입력할 수 없습니다' },
+              })}
             />
+            {errors.description && (
+              <Shared.ui.GuideTxt content={errors.description.message!} color="red" />
+            )}
           </Shared.ui.FormFieldset>
           <Shared.ui.FormFieldset>
             <Shared.ui.FormLabel>투표 선택지</Shared.ui.FormLabel>
             <VoteFormSelection
-              optionInputValues={optionInputValues}
+              optionInputFields={optionInputFields}
               addOptionInput={addOptionInput}
               removeOptionInput={removeOptionInput}
-              changeOptionInputValue={changeOptionInputValue}
+              register={register}
+              errors={errors}
             />
           </Shared.ui.FormFieldset>
         </div>

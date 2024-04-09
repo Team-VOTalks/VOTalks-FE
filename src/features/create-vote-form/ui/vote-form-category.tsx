@@ -1,13 +1,15 @@
 'use client';
 
+import { type UseFormRegister } from 'react-hook-form';
 import * as Shared from '@/shared';
+import { type CreateVoteFormValues } from '../types';
 
 export default function VoteFormCategory({
   currentCategory,
-  setCurrentCategory,
+  register,
 }: {
   currentCategory: string;
-  setCurrentCategory: (category: string) => void;
+  register: UseFormRegister<CreateVoteFormValues>;
 }) {
   return (
     <ul className="mb-3 grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:items-start sm:justify-start">
@@ -24,13 +26,14 @@ export default function VoteFormCategory({
             }}
           >
             <input
+              {...register('category', {
+                required: '카테고리를 선택해주세요',
+              })}
               type="radio"
-              name="category"
               className="invisible absolute opacity-0"
               tabIndex={-1}
               value={category}
               checked={currentCategory === category}
-              onChange={() => setCurrentCategory(category)}
             />
             <span>{name}</span>
           </label>

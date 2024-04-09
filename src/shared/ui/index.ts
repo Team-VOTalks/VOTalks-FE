@@ -19,6 +19,7 @@ import FormFieldset from './form-fieldset';
 import FormLegend from './form-legend';
 import FormInput from './form-input';
 import GuideTxt from './guide-txt';
+import FormTextarea from './form-textarea';
 
 export {
   NotFound,
@@ -41,5 +42,6 @@ export {
   FormFieldset,
   FormInput,
   FormLegend,
+  FormTextarea,
   GuideTxt,
 };
