@@ -14,6 +14,11 @@ import IconShare from './icon-share';
 import IconHome from './icon-home';
 import IconSetting from './icon-setting';
 import SpinnerBar from './spinner-bar';
+import FormLabel from './form-label';
+import FormFieldset from './form-fieldset';
+import FormLegend from './form-legend';
+import FormInput from './form-input';
+import GuideTxt from './guide-txt';
 
 export {
   NotFound,
@@ -32,4 +37,9 @@ export {
   IconHome,
   IconSetting,
   SpinnerBar,
+  FormLabel,
+  FormFieldset,
+  FormInput,
+  FormLegend,
+  GuideTxt,
 };

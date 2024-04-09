@@ -1,3 +1,5 @@
+import * as Features from '@/features';
+
 export default function VoteNewPage() {
-  return <div>VoteNewPage</div>;
+  return <Features.CreateVoteForm />;
 }
