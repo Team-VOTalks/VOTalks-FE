@@ -44,11 +44,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>
+      <body suppressHydrationWarning>
         <script src="/script/theme.js"></script>
         <Shared.utils.QueryProvider>
           <Header />
-          <section id="contents" className="mx-auto mb-auto h-auto w-full max-w-5xl pt-14 sm:pt-16">
+          <section
+            id="contents"
+            className="mx-auto mb-auto flex h-auto w-full max-w-5xl flex-grow flex-col items-stretch justify-start pt-14 sm:pt-16"
+          >
             {children}
             <div id="modal-root"></div>
           </section>
