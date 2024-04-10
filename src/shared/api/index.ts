@@ -1,4 +1,3 @@
-import client from './axios-client';
-import server from './axios-server';
+import http from './axios-instance';
 
-export { client, server };
+export { http };

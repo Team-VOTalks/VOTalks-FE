@@ -1,13 +1,13 @@
 'use client';
 
-import * as Shared from '@/shared';
+import { http } from '@/shared/api';
 
 export default function MainPage() {
   return (
     <main>
       <button
         type="button"
-        onClick={async () => Shared.api.client.get('/votes').then(console.log).catch(console.warn)}
+        onClick={async () => http.get('/votes').then(console.log).catch(console.warn)}
       >
         api 호출
       </button>

@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const client = axios.create({
+const http = axios.create({
   baseURL: '/api/v1',
   timeout: 2400,
   headers: {
@@ -10,11 +10,11 @@ const client = axios.create({
   },
 });
 
-client.interceptors.response.use(res => {
+http.interceptors.response.use(res => {
   if (typeof window !== 'undefined' && typeof res.data?.uuid !== 'undefined') {
     localStorage.setItem('_userId', res.data.uuid);
   }
   return res;
 });
 
-export default client;
+export default http;
