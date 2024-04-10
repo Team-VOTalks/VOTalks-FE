@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { type CreateVoteFormValues } from '../types';
+import { type CreateVoteFormRequestValues, type CreateVoteFormValues } from '../types';
 
 export default function useVoteForm() {
   const {
@@ -19,7 +19,6 @@ export default function useVoteForm() {
       options: [{ value: '' }, { value: '' }],
     },
   });
-
   const { fields: optionInputFields, append, remove } = useFieldArray({ control, name: 'options' });
 
   const addOptionInput = useCallback(() => {
@@ -31,7 +30,14 @@ export default function useVoteForm() {
 
   const handleFormSubmit = handleSubmit((body, e) => {
     e?.preventDefault;
-    console.log(body);
+    const { title, description, category, options } = body;
+    const data: CreateVoteFormRequestValues = {
+      title: title.trim(),
+      description: description.trim() || null,
+      category,
+      options: options.map(e => e.value),
+    };
+    console.log(JSON.stringify(data));
   });
 
   return {
