@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import IconHome from './icon-home';
+import IconHome from './icon/icon-home';
 import { ADMIN_EMAIL } from '../constants';
 
 export default function NotFound() {
