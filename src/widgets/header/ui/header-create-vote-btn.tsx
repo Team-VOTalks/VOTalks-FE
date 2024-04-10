@@ -1,8 +1,8 @@
 'use client';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import { ROUTE_OF_CREATE_FORM_TO_VOTE } from '../constants';
 import * as Shared from '@/shared';
-import Link from 'next/link';
 
 export default function HeaderCreateVoteBtn() {
   const pathname = usePathname();

@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, TextareaHTMLAttributes, forwardRef } from 'react';
+import { type DetailedHTMLProps, type TextareaHTMLAttributes, forwardRef } from 'react';
 import { type FieldError } from 'react-hook-form';
 
 type FormTextareaProps = DetailedHTMLProps<

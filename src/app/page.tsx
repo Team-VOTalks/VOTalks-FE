@@ -1,6 +1,6 @@
 'use client';
-import { CommonModal } from '@/entities';
 import { useState } from 'react';
+import { CommonModal } from '@/entities';
 
 export default function MainPage() {
   const [isOpen, setIsOpen] = useState(false);

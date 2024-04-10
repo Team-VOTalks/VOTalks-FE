@@ -1,8 +1,8 @@
 'use client';
 
 import { type UseFormRegister } from 'react-hook-form';
-import * as Shared from '@/shared';
 import { type CreateVoteFormValues } from '../types';
+import * as Shared from '@/shared';
 
 export default function VoteFormCategory({
   currentCategory,

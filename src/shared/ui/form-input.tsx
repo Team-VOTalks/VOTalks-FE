@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, InputHTMLAttributes, forwardRef } from 'react';
+import { type DetailedHTMLProps, type InputHTMLAttributes, forwardRef } from 'react';
 import { type FieldError } from 'react-hook-form';
 
 type FormInputProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {

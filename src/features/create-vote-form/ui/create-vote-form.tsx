@@ -1,9 +1,9 @@
 'use client';
 
-import * as Shared from '@/shared';
 import useVoteForm from '../lib/use-vote-form';
 import VoteFormCategory from './vote-form-category';
 import VoteFormSelection from './vote-form-selection';
+import * as Shared from '@/shared';
 
 export default function CreateVoteForm() {
   const {
