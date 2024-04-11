@@ -4,17 +4,7 @@ import axios from 'axios';
 
 const http = axios.create({
   baseURL: '/api/v1',
-  timeout: 2400,
-  headers: {
-    'VOTalks-Authorization': typeof window !== 'undefined' ? localStorage.getItem('_userId') : null,
-  },
-});
-
-http.interceptors.response.use(res => {
-  if (typeof window !== 'undefined' && typeof res.data?.uuid !== 'undefined') {
-    localStorage.setItem('_userId', res.data.uuid);
-  }
-  return res;
+  timeout: 3000,
 });
 
 export default http;
