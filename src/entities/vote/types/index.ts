@@ -9,9 +9,9 @@ export interface Vote {
   voteId: number;
   title: string;
   category: string;
-  createAt: Date;
+  createAt: Date | string;
   totalVoteCount: number;
-  description: string;
+  description: string | null;
   voteOptionWithCount: VoteOption[];
   totalCommentCount: number;
 }
