@@ -1,7 +1,13 @@
-export default function IconDropdownAppearance({ isRotate }: { isRotate?: boolean }) {
+export default function IconDropdownAppearance({
+  isRotate,
+  className,
+}: {
+  isRotate?: boolean;
+  className?: string;
+}) {
   return (
     <svg
-      className={isRotate ? 'rotate-180' : ''}
+      className={`${isRotate ? 'rotate-180' : ''} ${className ?? ''}`}
       xmlns="http://www.w3.org/2000/svg"
       width="0.8em"
       height="0.8em"

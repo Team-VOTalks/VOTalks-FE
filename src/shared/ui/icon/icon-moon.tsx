@@ -1,6 +1,12 @@
-export default function IconMoon() {
+export default function IconMoon({ className }: { className?: string }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="0.8em" height="0.8em" viewBox="0 0 24 24">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      width="0.8em"
+      height="0.8em"
+      viewBox="0 0 24 24"
+    >
       <path
         fill="currentColor"
         fillRule="evenodd"
