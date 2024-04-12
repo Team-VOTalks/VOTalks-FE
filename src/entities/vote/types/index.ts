@@ -4,6 +4,7 @@ export interface VoteOption {
   id: number;
   title: string;
   count: number;
+  isChecked: boolean;
 }
 export interface Vote {
   voteId: number;
