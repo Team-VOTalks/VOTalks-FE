@@ -29,7 +29,7 @@ export default function MainPage() {
       <ul className="flex flex-col items-stretch justify-start gap-7 md:grid md:grid-cols-2 md:gap-5">
         {voteData.map(data => (
           <li key={data.voteId} className="block h-fit rounded-lg border p-4">
-            <VoteItem data={data} />
+            <VoteItem data={data} type="detail" />
           </li>
         ))}
       </ul>
