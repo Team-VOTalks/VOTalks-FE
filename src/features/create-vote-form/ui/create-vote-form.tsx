@@ -39,6 +39,7 @@ export default function CreateVoteForm() {
               isError={errors.title}
               {...register('title', {
                 required: '투표 제목을 입력해주세요',
+                minLength: { value: 4, message: '제목은 최소 4자 이상 입력해야합니다' },
                 maxLength: { value: 100, message: '제목은 100자 이상 입력할 수 없습니다' },
               })}
             />
