@@ -7,5 +7,5 @@ export interface CreateVoteFormValues {
 
 export type CreateVoteFormRequestValues = Pick<CreateVoteFormValues, 'title' | 'category'> & {
   description: string | null;
-  options: string[];
+  voteOptions: string[];
 };

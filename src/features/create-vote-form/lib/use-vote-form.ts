@@ -38,7 +38,7 @@ export default function useVoteForm() {
       title: title.trim(),
       description: description.trim() || null,
       category,
-      options: options.map(e => e.value),
+      voteOptions: options.map(e => e.value),
     };
     console.log(JSON.stringify(data));
   });
