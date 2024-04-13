@@ -15,10 +15,5 @@ export default async function share(title: string): Promise<ReturnTypeOfShare> {
     await navigator.clipboard.writeText(location.href);
     return { type: 'clipboard', status: true };
   }
-  if (!!document?.queryCommandSupported?.('copy')) {
-    // 레거시 브라우저 지원
-    document.execCommand('copy');
-    return { type: 'clipboard', status: true };
-  }
   return { type: 'none', status: false };
 }

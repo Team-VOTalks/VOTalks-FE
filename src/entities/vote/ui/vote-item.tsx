@@ -1,9 +1,15 @@
 import Link from 'next/link';
+import { useMemo } from 'react';
 import type { Vote } from '../types';
 import share from '../lib/share';
+import { W_PERCENT } from '../constants';
 import * as Shared from '@/shared';
 
 export default function VoteItem({ data, type }: { data: Vote; type: 'list' | 'detail' }) {
+  const isVoted = useMemo(
+    () => data.voteOptionWithCount.some(({ isChecked }) => isChecked),
+    [data.voteOptionWithCount],
+  );
   return (
     <>
       <p className="mb-2 flex items-center justify-start gap-2 text-sm">
@@ -28,22 +34,43 @@ export default function VoteItem({ data, type }: { data: Vote; type: 'list' | 'd
         </p>
       )}
       <ul>
-        {data.voteOptionWithCount.map(({ id, title, count }) => (
+        {data.voteOptionWithCount.map(({ id, title, count, isChecked }) => (
           <li key={id} className="peerVoteBtn peer-[VoteBtn]:mt-2">
             <button
               type="button"
-              className="flex w-full items-center justify-between rounded border p-3"
+              className={`
+                ${
+                  isVoted && isChecked
+                    ? 'border-blue-500 font-medium text-blue-500'
+                    : isVoted
+                      ? 'border-gray-200 bg-transparent'
+                      : 'border-gray-100 bg-gray-100'
+                }
+                relative flex w-full items-center justify-between overflow-hidden rounded border p-3
+              `}
+              disabled={isVoted}
             >
-              <span className="flex items-center justify-start gap-2 break-keep text-left text-base sm:text-lg">
+              <span className="relative z-10 flex items-center justify-start gap-2 break-keep text-left text-base sm:text-lg">
                 <Shared.ui.IconCheck className="hidden xs:block" />
                 <span className="text-sm sm:text-base">{title}</span>
               </span>
-              <span className="hidden">{count}</span>
+              {isVoted && (
+                <>
+                  <span className="relative z-10 text-sm font-normal">{count}</span>
+                  <span
+                    className={`
+                      ${isChecked ? 'bg-blue-100' : 'bg-gray-100'} 
+                      ${W_PERCENT[Math.floor((count / data.totalVoteCount) * 100)]} 
+                      absolute bottom-0 left-0 right-0 top-0 z-0
+                    `}
+                  ></span>
+                </>
+              )}
             </button>
           </li>
         ))}
       </ul>
-      <div className="mt-3 flex items-center justify-between px-1">
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-1">
         <p className="text-sm text-gray-500">
           <strong className="mr-1 text-base font-medium text-blue-500">
             {new Intl.NumberFormat().format(data.totalVoteCount)}
@@ -53,25 +80,25 @@ export default function VoteItem({ data, type }: { data: Vote; type: 'list' | 'd
         {type === 'list' ? (
           <Link
             href={`/votes/${data.voteId}`}
-            className="flex items-center justify-center gap-1 text-xl text-gray-500"
+            className="flex items-center justify-center gap-1 text-lg text-gray-500 sm:text-xl"
           >
             <Shared.ui.IconComment />
-            <span className="text-base">
+            <span className="text-sm sm:text-base">
               {new Intl.NumberFormat().format(data.totalCommentCount)}
             </span>
           </Link>
         ) : (
           <button
             type="button"
-            title="공유하기"
-            className="flex items-center justify-center gap-1 text-xl text-gray-500"
+            title="투표 공유하기"
+            className="flex items-center justify-center gap-1 text-lg text-gray-500 sm:text-xl"
             onClick={async () => {
               const { type, status } = await share(data.title);
               console.log(`Share Type : ${type} (${status ? 'success' : 'failed'})`);
             }}
           >
             <Shared.ui.IconShare />
-            <span className="text-base">공유하기</span>
+            <span className="text-sm sm:text-base">공유하기</span>
           </button>
         )}
       </div>
