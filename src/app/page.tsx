@@ -1,10 +1,9 @@
 'use client';
 
-import { Vote } from '@/entities/vote/types';
-import { http } from '@/shared/api';
 import { useState } from 'react';
+import type { Vote } from '@/entities/vote/types';
 import * as Shared from '@/shared';
-import VoteItem from '@/entities/vote/ui/vote-item';
+import * as Entities from '@/entities';
 
 export default function MainPage() {
   const [voteData, setVoteData] = useState<Vote[]>([]);
@@ -16,7 +15,7 @@ export default function MainPage() {
           type="button"
           onClick={async () => {
             setIsPending(true);
-            const { data }: { data: { content: Vote[] } } = await http.get('/votes');
+            const data = await Entities.getVotes();
             setVoteData(data.content);
             setIsPending(false);
           }}
@@ -29,7 +28,7 @@ export default function MainPage() {
       <ul className="flex flex-col items-stretch justify-start gap-7 md:grid md:grid-cols-2 md:gap-5">
         {voteData.map(data => (
           <li key={data.voteId} className="block h-fit rounded-lg border p-4">
-            <VoteItem data={data} type="list" />
+            <Entities.VoteContent data={data} type="list" />
           </li>
         ))}
       </ul>

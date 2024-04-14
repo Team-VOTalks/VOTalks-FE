@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { useMemo } from 'react';
 import type { Vote } from '../types';
@@ -5,7 +7,7 @@ import share from '../lib/share';
 import { W_PERCENT } from '../constants';
 import * as Shared from '@/shared';
 
-export default function VoteItem({ data, type }: { data: Vote; type: 'list' | 'detail' }) {
+export default function VoteContent({ data, type }: { data: Vote; type: 'list' | 'detail' }) {
   const isVoted = useMemo(
     () => data.voteOptionWithCount.some(({ isChecked }) => isChecked),
     [data.voteOptionWithCount],
@@ -70,7 +72,12 @@ export default function VoteItem({ data, type }: { data: Vote; type: 'list' | 'd
           </li>
         ))}
       </ul>
-      <div className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-1">
+      <div
+        className={`
+          ${type === 'detail' ? 'mt-5' : 'mt-3'} 
+          flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-1
+        `}
+      >
         <p className="text-sm text-gray-500">
           <strong className="mr-1 text-base font-medium text-blue-500">
             {new Intl.NumberFormat().format(data.totalVoteCount)}
