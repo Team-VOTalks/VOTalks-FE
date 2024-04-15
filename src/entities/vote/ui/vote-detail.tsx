@@ -1,7 +1,7 @@
-import * as Entities from '@/entities';
+import getVote from '../api/get-vote';
+import VoteContent from './vote-content';
 
 export default async function VoteDetail({ id }: { id: string }) {
-  const data = await Entities.getVote(id);
-
-  return <Entities.VoteContent type="detail" data={data} />;
+  const data = await getVote(id);
+  return <VoteContent data={data} type="detail" />;
 }

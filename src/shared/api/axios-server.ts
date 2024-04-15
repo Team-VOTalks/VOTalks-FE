@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const server = axios.create({
-  baseURL: '/api/v1',
+  baseURL: `${process.env.FE_URL}/api/v1`,
   timeout: 3000,
 });
 
