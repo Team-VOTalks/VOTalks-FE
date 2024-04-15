@@ -1,10 +1,10 @@
 'use client';
 
-import { useCallback } from 'react';
 import dynamic from 'next/dynamic';
+import { useCallback } from 'react';
 import useThemeBtnDropdown from '../lib/use-theme-btn-dropdown';
 import useTheme from '../lib/use-theme';
-import { type Theme } from '../types/theme';
+import type { Theme } from '../types';
 import * as Shared from '@/shared';
 
 const ThemeMenuOnClient = dynamic(() => import('./theme-menu'), { ssr: false });

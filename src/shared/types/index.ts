@@ -1,3 +1,3 @@
-import { type Pagination } from './pagination';
+import type { Pagination } from './pagination';
 
-export { type Pagination };
+export type { Pagination };

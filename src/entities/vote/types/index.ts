@@ -1,4 +1,4 @@
-import { type Pagination } from '@/shared/types';
+import type { Pagination } from '@/shared/types';
 
 export interface VoteOption {
   id: number;

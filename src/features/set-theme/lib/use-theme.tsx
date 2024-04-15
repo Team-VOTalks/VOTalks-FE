@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { type Theme } from '../types/theme';
+import type { Theme } from '../types';
 
 function getCurrentTheme(): Theme {
   if (typeof window === 'undefined') {

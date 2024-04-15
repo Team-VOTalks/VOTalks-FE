@@ -1,4 +1,4 @@
-import { type Theme } from '../types/theme';
+import type { Theme } from '../types';
 import * as Shared from '@/shared';
 
 export default function ThemeMenu({

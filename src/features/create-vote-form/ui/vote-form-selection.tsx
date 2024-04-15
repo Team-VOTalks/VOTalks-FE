@@ -1,6 +1,6 @@
-import { type FieldErrors, type UseFormRegister } from 'react-hook-form';
+import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 import { MAX_OPTION_LENGTH } from '../constants';
-import { type CreateVoteFormValues } from '../types';
+import type { CreateVoteFormValues } from '../types';
 import * as Shared from '@/shared';
 
 export default function VoteFormSelection({

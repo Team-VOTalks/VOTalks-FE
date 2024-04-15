@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { type CreateVoteFormRequestValues, type CreateVoteFormValues } from '../types';
+import type { CreateVoteFormRequestValues, CreateVoteFormValues } from '../types';
 import * as Shared from '@/shared';
 
 export default function useVoteForm() {
