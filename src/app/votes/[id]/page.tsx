@@ -7,7 +7,7 @@ export async function generateMetadata({ params: { id } }: Props): Promise<Metad
   const vote = await Entities.getVote(id);
   return {
     title: vote.title,
-    description: vote.voteOptionWithCount.map(e => e.title).join(' vs '),
+    description: vote.voteOption.map(e => e.title).join(' vs '),
   };
 }
 

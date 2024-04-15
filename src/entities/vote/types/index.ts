@@ -13,7 +13,7 @@ export interface Vote {
   createAt: Date | string;
   totalVoteCount: number;
   description: string | null;
-  voteOptionWithCount: VoteOption[];
+  voteOption: VoteOption[];
   totalCommentCount: number;
 }
 

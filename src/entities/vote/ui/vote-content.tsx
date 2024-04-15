@@ -9,8 +9,8 @@ import * as Shared from '@/shared';
 
 export default function VoteContent({ data, type }: { data: Vote; type: 'list' | 'detail' }) {
   const isVoted = useMemo(
-    () => data.voteOptionWithCount.some(({ isChecked }) => isChecked),
-    [data.voteOptionWithCount],
+    () => data.voteOption.some(({ isChecked }) => isChecked),
+    [data.voteOption],
   );
   return (
     <>
@@ -42,7 +42,7 @@ export default function VoteContent({ data, type }: { data: Vote; type: 'list' |
         </p>
       )}
       <ul>
-        {data.voteOptionWithCount.map(({ id, title, count, isChecked }) => (
+        {data.voteOption.map(({ id, title, count, isChecked }) => (
           <li key={id} className="peerVoteBtn peer-[VoteBtn]:mt-2">
             <button
               type="button"
