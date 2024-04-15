@@ -1,5 +1,5 @@
 import { Comment } from './comment';
 import { CommonModal } from './modal';
-import { VoteDetail, VoteContent, getVote, getVotes, VoteList } from './vote';
+import { VoteContent, getVote, getVotes, VoteList, VoteSkeleton } from './vote';
 
-export { Comment, CommonModal, VoteContent, getVote, getVotes, VoteDetail, VoteList };
+export { Comment, CommonModal, VoteContent, getVote, getVotes, VoteList, VoteSkeleton };

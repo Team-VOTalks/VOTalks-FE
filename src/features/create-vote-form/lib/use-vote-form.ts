@@ -1,12 +1,16 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import type { CreateVoteFormRequestValues, CreateVoteFormValues } from '../types';
+import postVotes from '../api/post-votes';
 import * as Shared from '@/shared';
 
 export default function useVoteForm() {
   Shared.lib.usePreventDeviation();
+
+  const router = useRouter();
 
   const {
     register,
@@ -40,7 +44,14 @@ export default function useVoteForm() {
       category,
       voteOptions: options.map(e => e.value),
     };
-    console.log(JSON.stringify(data));
+    postVotes(data)
+      .then(() => router.push('/'))
+      .catch(err => {
+        const { response } = err;
+        const message = response?.data?.message ?? response?.statusText ?? '뭔가 잘못됐어요...';
+        const status = response?.status ?? '000';
+        console.warn(`[${status}] ${message}`);
+      });
   });
 
   return {

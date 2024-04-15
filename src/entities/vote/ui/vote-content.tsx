@@ -28,7 +28,13 @@ export default function VoteContent({ data, type }: { data: Vote; type: 'list' |
           break-keep px-1 font-medium sm:text-lg
         `}
       >
-        {data.title}
+        {type === 'list' ? (
+          <Link href={`/votes/${data.voteId}`} className="block w-full">
+            {data.title}
+          </Link>
+        ) : (
+          data.title
+        )}
       </h3>
       {type === 'detail' && data.description && (
         <p className="mb-6 block whitespace-pre-line break-keep px-1 text-sm text-gray-500 sm:text-base">

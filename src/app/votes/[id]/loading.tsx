@@ -1,3 +1,9 @@
+import * as Entities from '@/entities';
+
 export default function VoteDetailLoading() {
-  return <div>loading...</div>;
+  return (
+    <div className="py-6">
+      <Entities.VoteSkeleton />
+    </div>
+  );
 }
