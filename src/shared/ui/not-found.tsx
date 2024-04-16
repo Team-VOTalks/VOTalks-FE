@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import IconHome from './icon/icon-home';
+import IconRefresh from './icon/icon-refresh';
 import { ADMIN_EMAIL } from '../constants';
 
-export default function NotFound() {
+export default function NotFound({ retryFn }: { retryFn?: () => void }) {
   return (
     <div className="flex h-auto w-full flex-col items-center justify-start">
       <Image
@@ -23,14 +24,26 @@ export default function NotFound() {
         <br className="target" />
         관리자({ADMIN_EMAIL})에게 문의하여 주십시오.
       </p>
-      <Link
-        href="/"
-        className="flex items-center justify-center gap-1 rounded bg-blue-500 py-2 pl-4 pr-5 text-xl text-white sm:text-2xl"
-        title="메인페이지 이동"
-      >
-        <IconHome />
-        <span className="text-base font-normal sm:text-lg">메인으로</span>
-      </Link>
+      <p className="flex items-center justify-center gap-2">
+        {retryFn !== undefined && (
+          <button
+            type="button"
+            className="flex items-center justify-center gap-1 rounded bg-gray-100 py-2 pl-3 pr-4 text-xl xs:pl-4 xs:pr-5 sm:text-2xl"
+            onClick={retryFn}
+          >
+            <IconRefresh />
+            <span className="text-base font-normal sm:text-lg">새로고침</span>
+          </button>
+        )}
+        <Link
+          href="/"
+          className="flex items-center justify-center gap-1 rounded bg-blue-500 py-2 pl-3 pr-4 text-xl text-white xs:pl-4 xs:pr-5 sm:text-2xl"
+          title="메인페이지 이동"
+        >
+          <IconHome />
+          <span className="text-base font-normal sm:text-lg">메인으로</span>
+        </Link>
+      </p>
     </div>
   );
 }
