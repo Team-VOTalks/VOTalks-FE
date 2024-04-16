@@ -107,4 +107,17 @@ export const dataVote: Vote[] = [
     ],
     totalCommentCount: 5743,
   },
+  {
+    voteId: 8,
+    title: '제이쿼리 레거시 > next.js 로 넘어가는 SI 회사 신입 연봉 2900 취업 한다 vs 안한다',
+    category: voteCategory.dev,
+    createAt: new Date('2024-02-12'),
+    totalVoteCount: 513,
+    description: null,
+    voteOption: [
+      { id: 1, title: '당연히 한다', count: Math.floor(513 * 0.37), isChecked: false },
+      { id: 2, title: '그걸 왜하냐', count: Math.floor(513 * 0.63), isChecked: false },
+    ],
+    totalCommentCount: 2641,
+  },
 ];
