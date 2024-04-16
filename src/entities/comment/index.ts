@@ -1,3 +1,5 @@
-import Comment from './ui/comment';
+import CommentForm from './ui/comment-form';
+import CommentItem from './ui/comment-item';
+import CommentList from './ui/comment-list';
 
-export { Comment };
+export { CommentItem, CommentList, CommentForm };
