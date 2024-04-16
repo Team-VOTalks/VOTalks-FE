@@ -22,6 +22,10 @@ import GuideTxt from './guide-txt';
 import FormTextarea from './form/form-textarea';
 import SpinnerCircle from './spinner-circle';
 import IconRefresh from './icon/icon-refresh';
+import IconArrowRight from './icon/icon-arrow-right';
+import IconArrowLeft from './icon/icon-arrow-left';
+import IconPause from './icon/icon-pause';
+import IconPlay from './icon/icon-play';
 
 export {
   NotFound,
@@ -48,4 +52,8 @@ export {
   GuideTxt,
   SpinnerCircle,
   IconRefresh,
+  IconArrowRight,
+  IconArrowLeft,
+  IconPause,
+  IconPlay,
 };

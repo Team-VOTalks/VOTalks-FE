@@ -1,3 +1,4 @@
+import { Banner } from './banner';
 import { CommentForm, CommentItem, CommentList } from './comment';
 import { CommonModal } from './modal';
 import { VoteContent, getVote, getVotes, VoteList, VoteSkeleton } from './vote';
@@ -12,4 +13,5 @@ export {
   VoteList,
   VoteSkeleton,
   CommentForm,
+  Banner,
 };
