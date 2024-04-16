@@ -1,26 +1,38 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
-import getVotes from '../api/get-votes';
+import useVoteList from '../lib/use-vote-list';
 import VoteContent from './vote-content';
 import VoteSkeleton from './vote-skeleton';
+import VoteCategory from './vote-category';
+import * as Shared from '@/shared';
 
 export default function VoteList() {
-  const { data, isLoading } = useQuery({ queryKey: ['votes'], queryFn: getVotes });
+  const { data, isLoading, currentCategory, setCategory } = useVoteList();
 
   return (
-    <ul className="flex flex-col items-stretch justify-start gap-7 md:grid md:grid-cols-2 md:gap-5">
-      {isLoading
-        ? Array.from({ length: 8 }, (_, i) => i + 1).map(i => (
+    <>
+      <div className="mb-8">
+        <VoteCategory currentCategory={currentCategory} setCategory={setCategory} />
+      </div>
+      <ul className="relative flex flex-col items-stretch justify-start gap-7 md:grid md:grid-cols-2 md:gap-5">
+        {isLoading ? (
+          Array.from({ length: 8 }, (_, i) => i + 1).map(i => (
             <li key={String(i)} className="py-4">
               <VoteSkeleton />
             </li>
           ))
-        : data?.content.map(data => (
+        ) : data && data.content.length > 0 ? (
+          data.content.map(data => (
             <li key={data.voteId} className="block h-fit rounded-lg border p-4">
               <VoteContent data={data} type="list" />
             </li>
-          ))}
-    </ul>
+          ))
+        ) : (
+          <li>
+            <Shared.ui.GuideTxt content="투표가 없습니다" />
+          </li>
+        )}
+      </ul>
+    </>
   );
 }
