@@ -20,6 +20,7 @@ import FormLegend from './form/form-legend';
 import FormInput from './form/form-input';
 import GuideTxt from './guide-txt';
 import FormTextarea from './form/form-textarea';
+import SpinnerCircle from './spinner-circle';
 
 export {
   NotFound,
@@ -44,4 +45,5 @@ export {
   FormLegend,
   FormTextarea,
   GuideTxt,
+  SpinnerCircle,
 };
