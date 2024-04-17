@@ -20,7 +20,7 @@ export const dataVote: Vote[] = [
   {
     voteId: 2,
     title: '팀원을 고를 때 나는',
-    category: voteCategory.dev,
+    category: voteCategory.company,
     createAt: new Date('2024-02-08'),
     totalVoteCount: 943,
     description: null,

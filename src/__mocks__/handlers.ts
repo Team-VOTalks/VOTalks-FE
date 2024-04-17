@@ -2,6 +2,7 @@ import type { HttpHandler, StrictRequest, DefaultBodyType } from 'msw';
 import { HttpResponse, http, delay } from 'msw';
 import { dataVote } from './data/vote';
 import { dataComment } from './data/comment';
+import * as Shared from '@/shared';
 
 const baseURL = process.env.API_URL + '/api/v1';
 
@@ -16,7 +17,15 @@ export const handlers: HttpHandler[] = [
   http.get(`${baseURL}/votes`, async ({ request }) => {
     // 투표 전체 조회
     await initHandler(request);
-    // const params = getParams(request.url);
+    const params = getParams(request.url);
+    const categoryParam = params.get('category');
+
+    if (!!categoryParam) {
+      const currentCategory = Shared.constants.COMMUNITY_CATEGORIES[categoryParam];
+      return HttpResponse.json({
+        content: dataVote.filter(({ category }) => category === currentCategory),
+      });
+    }
     return HttpResponse.json({ content: dataVote });
   }),
   http.post(`${baseURL}/votes`, async ({ request }) => {

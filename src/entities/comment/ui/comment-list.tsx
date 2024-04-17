@@ -16,8 +16,8 @@ export default function CommentList({ id }: { id: string }) {
     </div>
   ) : (
     <ul>
-      {data?.content.map((data, i) => (
-        <li key={i + 1} className="peerCommentList peer-[CommentList]:mt-6">
+      {data?.content.map(data => (
+        <li key={data.commentId} className="peerCommentList peer-[CommentList]:mt-6">
           <CommentItem data={data} />
         </li>
       ))}

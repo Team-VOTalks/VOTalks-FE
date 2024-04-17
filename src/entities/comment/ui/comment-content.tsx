@@ -5,12 +5,12 @@ export default function CommentContent({ data }: { data: Comment }) {
   return (
     <>
       <p className="mb-1 flex items-center justify-start gap-1">
-        <strong className="text-sm font-medium sm:text-base">익명{data.user}</strong>
+        <strong className="text-sm font-medium sm:text-base">익명{data.userIndex}</strong>
         <span className="text-sm text-gray-500 sm:text-base">
           &middot; {new Intl.DateTimeFormat().format(new Date(data.createAt))}
         </span>
       </p>
-      <p className="mb-1 break-keep text-base sm:text-lg">{data.title}</p>
+      <p className="mb-1 break-keep text-base sm:text-lg">{data.content}</p>
       <p className="mb-2 flex items-center justify-start gap-2">
         <button
           type="button"
