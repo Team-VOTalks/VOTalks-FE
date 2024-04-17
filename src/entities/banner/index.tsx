@@ -49,8 +49,8 @@ export default function Banner() {
           <Shared.ui.IconArrowLeft />
         </SwiperBtn>
         <SwiperPauseAndPlayBtn
-          play={() => swiperRef.current?.autoplay.resume()}
-          pause={() => swiperRef.current?.autoplay.pause()}
+          play={() => swiperRef.current?.autoplay.start()}
+          pause={() => swiperRef.current?.autoplay.stop()}
         />
         <SwiperBtn label="다음 슬라이드" onClick={() => swiperRef.current?.slideNext()}>
           <Shared.ui.IconArrowRight />
