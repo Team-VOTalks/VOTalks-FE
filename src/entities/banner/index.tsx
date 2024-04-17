@@ -1,6 +1,6 @@
 'use client';
 
-import { type ReactNode, useRef, useState, useEffect } from 'react';
+import { type ReactNode, useRef, useState } from 'react';
 import { Swiper as SwiperWrapper, SwiperSlide } from 'swiper/react';
 import type { Swiper, SwiperOptions } from 'swiper/types';
 import { Autoplay } from 'swiper/modules';
@@ -70,7 +70,7 @@ function SwiperBtn({
   children?: ReactNode;
 }) {
   return (
-    <button type="button" title={label} className="relative p-1" onClick={() => onClick()}>
+    <button type="button" title={label} className="relative p-1" onClick={onClick}>
       {children}
       <span className="blind">{label}</span>
     </button>
