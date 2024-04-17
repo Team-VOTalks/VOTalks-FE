@@ -10,7 +10,7 @@ import 'swiper/css';
 
 const swiperOption: SwiperOptions = {
   modules: [Autoplay],
-  autoplay: { delay: 2400, disableOnInteraction: false },
+  autoplay: { delay: 3200, disableOnInteraction: false },
   loop: true,
 };
 
