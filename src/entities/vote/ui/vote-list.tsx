@@ -12,7 +12,7 @@ export default function VoteList() {
   return (
     <>
       <div className="mb-8">
-        <VoteCategory currentCategory={currentCategory} setCategory={setCategory} />
+        <VoteCategory {...{ currentCategory, setCategory }} />
       </div>
       <ul className="relative flex flex-col items-stretch justify-start gap-7 md:grid md:grid-cols-2 md:gap-5">
         {isLoading ? (

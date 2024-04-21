@@ -1,5 +1,10 @@
 import * as Shared from '@/shared';
 
-export default async function postVote(voteId: string, voteOptionId: string) {
+type PostVoteData = {
+  voteId: string;
+  voteOptionId: string;
+};
+
+export default async function postVote({ voteId, voteOptionId }: PostVoteData) {
   return await Shared.api.client.post(`/votes/${voteId}`, { voteOptionId });
 }
