@@ -14,10 +14,6 @@ const swiperOption: SwiperOptions = {
   loop: true,
 };
 
-const slideInfo: Array<[number, string, string]> = [
-  [1, '구름톤 트레이닝 모집', 'https://kdt.goorm.io/'],
-];
-
 const styleOfSlide =
   '!flex !h-[32vw] max-h-80 min-h-40 !w-full items-center justify-center overflow-hidden xs:min-h-48 sm:min-h-60';
 
@@ -31,14 +27,10 @@ export default function Banner() {
         className="relative block overflow-hidden rounded-lg border bg-gray-100"
         onSwiper={swiper => (swiperRef.current = swiper)}
       >
-        {slideInfo.map(([i, alt, link]) => (
-          <SwiperSlide key={i} className={styleOfSlide}>
+        {Shared.constants.SLIDE_INFO.map(({ imgURL, alt, link }) => (
+          <SwiperSlide key={imgURL} className={styleOfSlide}>
             <a href={link} target="_blank" className="block h-full w-full">
-              <img
-                src={`/img/ad/votalks-ad-${i}.jpg`}
-                className="h-full w-full object-cover"
-                alt={alt}
-              />
+              <img src={imgURL} className="h-full w-full object-cover" alt={alt} />
             </a>
           </SwiperSlide>
         ))}

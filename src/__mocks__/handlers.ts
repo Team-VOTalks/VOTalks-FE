@@ -5,6 +5,8 @@ import { dataComment } from './data/comment';
 import * as Shared from '@/shared';
 
 const baseURL = process.env.API_URL + '/api/v1';
+const categories = Shared.constants.COMMUNITY_CATEGORIES;
+type Category = Shared.constants.CommunityCategory;
 
 const initHandler = async (req: StrictRequest<DefaultBodyType>) => {
   console.log(`[MSW]: ${req.method} ${req.url} ✅`);
@@ -21,7 +23,7 @@ export const handlers: HttpHandler[] = [
     const categoryParam = params.get('category');
 
     if (!!categoryParam) {
-      const currentCategory = Shared.constants.COMMUNITY_CATEGORIES[categoryParam];
+      const currentCategory = categories[categoryParam as Category];
       return HttpResponse.json({
         content: dataVote.filter(({ category }) => category === currentCategory),
       });
