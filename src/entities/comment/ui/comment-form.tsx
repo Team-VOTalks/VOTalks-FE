@@ -3,9 +3,9 @@
 import useCommentForm from '../lib/use-comment-form';
 import * as Shared from '@/shared';
 
-export default function CommentForm({ id }: { id: string }) {
+export default function CommentForm({ voteId }: { voteId: string }) {
   const { textAreaRef, submitBtnRef, handleResizeHeightOfTextarea, handleFormSubmit } =
-    useCommentForm(id);
+    useCommentForm({ voteId });
   return (
     <form className="relative block" onSubmit={handleFormSubmit}>
       <textarea

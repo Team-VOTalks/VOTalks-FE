@@ -2,7 +2,7 @@ import type { ChangeEvent, FormEvent } from 'react';
 import { useCallback, useRef } from 'react';
 import postComments from '../api/post-comments';
 
-export default function useCommentForm(id: string) {
+export default function useCommentForm({ voteId }: { voteId: string }) {
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
   const submitBtnRef = useRef<HTMLButtonElement | null>(null);
 
@@ -33,7 +33,7 @@ export default function useCommentForm(id: string) {
     textAreaRef.current.disabled = true;
     textAreaRef.current.value = '댓글 작성 중...';
 
-    postComments(id, commentValue)
+    postComments(voteId, commentValue)
       .then(() => {
         initValue('');
         // TODO: 데이터 최신화 로직 필요

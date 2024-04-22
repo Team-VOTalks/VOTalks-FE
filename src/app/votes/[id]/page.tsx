@@ -31,9 +31,9 @@ export default async function VoteDetailPage({ params: { id } }: Props) {
               </span>
             </h4>
           </div>
-          <Entities.CommentForm id={id} />
+          <Entities.CommentForm voteId={id} />
         </div>
-        <CommentListOfClient id={id} />
+        <CommentListOfClient voteId={id} />
       </div>
     </div>
   );

@@ -5,10 +5,10 @@ import getComments from '../api/get-comments';
 import CommentItem from './comment-item';
 import * as Shared from '@/shared';
 
-export default function CommentList({ id }: { id: string }) {
+export default function CommentList({ voteId }: { voteId: string }) {
   const { data, isLoading } = useQuery({
-    queryKey: ['comments', id],
-    queryFn: () => getComments(id),
+    queryKey: ['votes', voteId, 'comments'],
+    queryFn: () => getComments(voteId),
   });
   return isLoading ? (
     <div className="flex w-full items-center justify-center px-4 py-8 text-4xl text-gray-400">
