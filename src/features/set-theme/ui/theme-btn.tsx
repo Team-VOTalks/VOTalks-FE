@@ -1,13 +1,11 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { useCallback } from 'react';
 import useThemeBtnDropdown from '../lib/use-theme-btn-dropdown';
 import useTheme from '../lib/use-theme';
 import type { Theme } from '../types';
+import ThemeMenu from './theme-menu';
 import * as Shared from '@/shared';
-
-const ThemeMenuOnClient = dynamic(() => import('./theme-menu'), { ssr: false });
 
 export default function ThemeBtn() {
   const { isOpen, handleToggleMenu, themeBtnAreaRef } = useThemeBtnDropdown();
@@ -32,7 +30,7 @@ export default function ThemeBtn() {
         </span>
         <Shared.ui.IconDropdownAppearance isRotate={isOpen} />
       </button>
-      <ThemeMenuOnClient isOpen={isOpen} currentTheme={currentTheme} setTheme={setCurrentTheme} />
+      {isOpen && <ThemeMenu {...{ isOpen, currentTheme, setCurrentTheme }} />}
     </div>
   );
 }

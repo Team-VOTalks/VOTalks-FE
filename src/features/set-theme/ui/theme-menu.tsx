@@ -1,13 +1,15 @@
+'use client';
+
 import type { Theme } from '../types';
 import * as Shared from '@/shared';
 
 export default function ThemeMenu({
   isOpen,
-  setTheme,
+  setCurrentTheme,
   currentTheme,
 }: {
   isOpen: boolean;
-  setTheme: (theme: Theme) => void;
+  setCurrentTheme: (theme: Theme) => void;
   currentTheme: Theme;
 }) {
   const delayedOfVisible = Shared.lib.useDelayForTransition(isOpen, 100);
@@ -33,14 +35,17 @@ export default function ThemeMenu({
             type="button"
             title={`${label} 사용`}
             className="flex w-full items-center justify-start gap-1 rounded bg-gray-000 p-2 active:bg-gray-100 sm:gap-2 sm:text-lg sm:hover:bg-gray-100 sm:active:bg-gray-000"
-            onClick={() => setTheme(theme)}
+            onClick={() => setCurrentTheme(theme)}
           >
             <span className="flex h-5 w-5 items-center justify-center">{icon}</span>
-            <span className="whitespace-nowrap text-sm font-medium sm:text-base">
+            <span
+              className="whitespace-nowrap text-sm font-medium sm:text-base"
+              suppressHydrationWarning
+            >
               {label}
-              <small className="inline text-sm font-normal text-gray-500">
-                {currentTheme === theme && ' (선택됨)'}
-              </small>
+              {currentTheme === theme && (
+                <small className="inline text-sm font-normal text-gray-500"> (선택됨)</small>
+              )}
             </span>
           </button>
         </li>

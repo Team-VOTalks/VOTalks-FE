@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 import * as Entities from '@/entities';
 
 type Props = { params: { id: string } };
@@ -11,10 +10,6 @@ export async function generateMetadata({ params: { id } }: Props): Promise<Metad
     description: vote.voteOption.map(e => e.title).join(' vs '),
   };
 }
-
-const CommentListOfClient = dynamic(() => import('@/entities/comment/ui/comment-list'), {
-  ssr: false,
-});
 
 export default async function VoteDetailPage({ params: { id } }: Props) {
   const data = await Entities.getVote(id);
@@ -33,7 +28,7 @@ export default async function VoteDetailPage({ params: { id } }: Props) {
           </div>
           <Entities.CommentForm voteId={id} />
         </div>
-        <CommentListOfClient voteId={id} />
+        <Entities.CommentList voteId={id} />
       </div>
     </div>
   );
