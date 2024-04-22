@@ -50,7 +50,7 @@ export default function VoteList() {
               ))}
             </ul>
           ) : (
-            <div className="py-12 sm:py-20">
+            <div key="none" className="py-12 sm:py-20">
               <Shared.ui.EmptyResult content="투표가 없습니다" />
             </div>
           ),
