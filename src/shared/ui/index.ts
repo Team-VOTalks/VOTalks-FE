@@ -27,6 +27,8 @@ import IconArrowLeft from './icon/icon-arrow-left';
 import IconPause from './icon/icon-pause';
 import IconPlay from './icon/icon-play';
 import CheckLogo from './check-logo';
+import IconDanger from './icon/icon-danger';
+import EmptyResult from './empty-result';
 
 export {
   NotFound,
@@ -58,4 +60,6 @@ export {
   IconPause,
   IconPlay,
   CheckLogo,
+  IconDanger,
+  EmptyResult,
 };

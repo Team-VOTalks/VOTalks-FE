@@ -21,14 +21,22 @@ export const handlers: HttpHandler[] = [
     await initHandler(request);
     const params = getParams(request.url);
     const categoryParam = params.get('category');
+    const pageIndex = Number(params.get('page'));
 
+    if (isNaN(pageIndex)) {
+      return HttpResponse.json({ message: '유효하지 않은 요청입니다' }, { status: 400 });
+    }
     if (!!categoryParam) {
       const currentCategory = categories[categoryParam as Category];
       return HttpResponse.json({
         content: dataVote.filter(({ category }) => category === currentCategory),
+        pageInfo: { pageIndex, totalPageLength: 1, done: true },
       });
     }
-    return HttpResponse.json({ content: dataVote });
+    return HttpResponse.json({
+      content: dataVote,
+      pageInfo: { pageIndex, totalPageLength: 3, done: pageIndex === 3 },
+    });
   }),
   http.post(`${baseURL}/votes`, async ({ request }) => {
     // 투표 생성
