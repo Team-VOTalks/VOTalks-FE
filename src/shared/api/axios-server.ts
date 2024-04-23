@@ -1,8 +1,4 @@
-import axios from 'axios';
-
 const baseURL = process.env.FE_URL + '/api/v1';
-
-axios.get;
 
 const server = {
   async get<T = any>(path: string) {
