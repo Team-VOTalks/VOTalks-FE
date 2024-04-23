@@ -23,7 +23,7 @@ const post = (path: string, resolver: HttpResponseResolver) =>
   });
 
 const error = (message: string, status: number) =>
-  HttpResponse.json({ message: `[MSW]: ${message}` }, { status });
+  HttpResponse.json({ message: `${message} (MSW)` }, { status });
 
 const getParams = (url: string) => new URL(url).searchParams;
 

@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import * as Shared from '@/shared';
 
 export default function VoteDetailError({
@@ -9,5 +10,8 @@ export default function VoteDetailError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  useEffect(() => {
+    console.warn(error.toString());
+  }, []);
   return <Shared.ui.NotFound retryFn={reset} />;
 }
