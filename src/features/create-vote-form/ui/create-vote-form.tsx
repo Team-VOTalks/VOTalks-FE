@@ -14,6 +14,7 @@ export default function CreateVoteForm() {
     watch,
     handleFormSubmit,
     errors,
+    submitBtnRef,
   } = useVoteForm();
 
   return (
@@ -76,9 +77,10 @@ export default function CreateVoteForm() {
           </div>
         </div>
         <button
+          ref={submitBtnRef}
           type="submit"
           title="투표 만들기"
-          className="mt-6 block h-auto w-full rounded bg-blue-500 p-3 text-base font-medium text-white disabled:bg-gray-500 sm:text-lg"
+          className="mt-6 block h-auto w-full rounded bg-blue-500 p-3 text-base font-medium text-white disabled:bg-blue-200 sm:text-lg"
         >
           투표 만들기
         </button>

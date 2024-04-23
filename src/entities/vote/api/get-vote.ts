@@ -1,7 +1,7 @@
 import type { Vote } from '../types';
 import * as Shared from '@/shared';
 
-export default async function getVote(id: string): Promise<Vote> {
-  const { data }: { data: Vote } = await Shared.api.server.get(`/votes/${id}`);
+export default async function getVote({ voteId }: { voteId: string }) {
+  const { data } = await Shared.api.server.get<Vote>(`/votes/${voteId}`);
   return data;
 }

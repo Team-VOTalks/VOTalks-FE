@@ -8,7 +8,7 @@ export default async function getVotes({
   category?: string;
   pageParam?: number;
 }) {
-  const { data }: { data: Votes } = await Shared.api.client.get('/votes', {
+  const { data } = await Shared.api.client.get<Votes>('/votes', {
     params: { category, page: pageParam ?? 1 },
   });
   return data;

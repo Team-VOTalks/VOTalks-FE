@@ -1,18 +1,20 @@
 import type { Metadata } from 'next';
 import * as Entities from '@/entities';
 
-type Props = { params: { id: string } };
+type Props = { params: { voteId: string } };
 
-export async function generateMetadata({ params: { id } }: Props): Promise<Metadata> {
-  const vote = await Entities.getVote(id);
+export async function generateMetadata({ params: { voteId } }: Props): Promise<Metadata> {
+  const data = await Entities.getVote({ voteId });
+
   return {
-    title: vote.title,
-    description: vote.voteOption.map(e => e.title).join(' vs '),
+    title: data.title,
+    description: data.voteOption.map(e => e.title).join(' vs '),
   };
 }
 
-export default async function VoteDetailPage({ params: { id } }: Props) {
-  const data = await Entities.getVote(id);
+export default async function VoteDetailPage({ params: { voteId } }: Props) {
+  const data = await Entities.getVote({ voteId });
+
   return (
     <div className="py-6">
       <Entities.VoteContent data={data} type="detail" />
@@ -26,9 +28,9 @@ export default async function VoteDetailPage({ params: { id } }: Props) {
               </span>
             </h4>
           </div>
-          <Entities.CommentForm voteId={id} />
+          <Entities.CommentForm voteId={voteId} />
         </div>
-        <Entities.CommentList voteId={id} />
+        <Entities.CommentList voteId={voteId} />
       </div>
     </div>
   );

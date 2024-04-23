@@ -8,8 +8,8 @@ export default function CommentItem({ voteId, data }: { voteId: string; data: Co
     <div className="relative block">
       <CommentContent data={data} />
       {data.totalReplyCount > 0 && (
-        <div className="p-1 text-base text-gray-500">
-          <button type="button">{`답글 ${data.totalReplyCount}개 더보기`}</button>
+        <div className="px-1 text-base text-gray-500">
+          <button type="button" className="p-1">{`답글 ${data.totalReplyCount}개 더보기`}</button>
         </div>
       )}
     </div>
