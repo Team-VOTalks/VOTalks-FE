@@ -1,83 +1,146 @@
-import type { HttpHandler, StrictRequest, DefaultBodyType } from 'msw';
+import type { HttpHandler, HttpResponseResolver } from 'msw';
 import { HttpResponse, http, delay } from 'msw';
-import { dataVote } from './data/vote';
-import { dataComment } from './data/comment';
+import * as DB from './data';
 import * as Shared from '@/shared';
 
+const delayMS = 1200;
 const baseURL = process.env.API_URL + '/api/v1';
-const categories = Shared.constants.COMMUNITY_CATEGORIES;
-type Category = Shared.constants.CommunityCategory;
 
-const initHandler = async (req: StrictRequest<DefaultBodyType>) => {
-  console.log(`[MSW]: ${req.method} ${req.url} ✅`);
-  await delay(1200);
-};
+const get = (path: string, resolver: HttpResponseResolver) =>
+  http.get(baseURL + path, async info => {
+    console.log(`[MSW]: ${info.request.method} ${info.request.url} ✅`);
+    await delay(delayMS);
+    return resolver(info);
+  });
+
+const post = (path: string, resolver: HttpResponseResolver) =>
+  http.post(baseURL + path, async info => {
+    const body = await info.request.json();
+    console.log(`[MSW]: ${info.request.method} ${info.request.url} ✅`);
+    console.log(' ﾤ ' + JSON.stringify(body));
+    await delay(delayMS);
+    return resolver(info);
+  });
+
+const error = (message: string, status: number) =>
+  HttpResponse.json({ message: `[MSW]: ${message}` }, { status });
 
 const getParams = (url: string) => new URL(url).searchParams;
 
+const categories = Shared.constants.COMMUNITY_CATEGORIES;
+type Category = Shared.constants.CommunityCategory;
+
 export const handlers: HttpHandler[] = [
-  http.get(`${baseURL}/votes`, async ({ request }) => {
+  get('/votes', ({ request }) => {
     // 투표 전체 조회
-    await initHandler(request);
-    const params = getParams(request.url);
-    const categoryParam = params.get('category');
-    const pageIndex = Number(params.get('page'));
+    const queryParams = getParams(request.url);
+    const categoryParam = queryParams.get('category');
+    const pageIndex = Number(queryParams.get('page')) || 1;
 
     if (isNaN(pageIndex)) {
-      return HttpResponse.json({ message: '유효하지 않은 요청입니다' }, { status: 400 });
+      return error('유효하지 않은 요청입니다', 400);
     }
     if (!!categoryParam) {
       const currentCategory = categories[categoryParam as Category];
       return HttpResponse.json({
-        content: dataVote.filter(({ category }) => category === currentCategory),
+        content: DB.vote.filter(({ category }) => category === currentCategory),
         pageInfo: { pageIndex, totalPageLength: 1, done: true },
       });
     }
     return HttpResponse.json({
-      content: dataVote,
+      content: DB.vote,
       pageInfo: { pageIndex, totalPageLength: 3, done: pageIndex === 3 },
     });
   }),
-  http.post(`${baseURL}/votes`, async ({ request }) => {
+  post('/votes', () => {
     // 투표 생성
-    await initHandler(request);
-    // return HttpResponse.json({ message: '고의적인 에러입니다' }, { status: 500 });
     return HttpResponse.json(null, { status: 201 });
   }),
-  http.get(`${baseURL}/votes/:id`, async ({ params, request }) => {
+  get('/votes/:voteId', ({ params }) => {
     // 투표 상세 조회
-    await initHandler(request);
-    const voteId = Number(params.id);
+    const voteId = Number(params.voteId);
 
     if (isNaN(voteId)) {
-      return HttpResponse.json({ message: '유효하지 않은 요청입니다' }, { status: 400 });
+      return error('유효하지 않은 요청입니다', 400);
     }
-    if (voteId <= 0 || voteId > dataVote.length) {
-      return HttpResponse.json({ message: '투표를 찾을 수 없습니다' }, { status: 404 });
+    if (voteId <= 0 || voteId > DB.vote.length) {
+      return error('투표를 찾을 수 없습니다', 404);
     }
-    return HttpResponse.json(dataVote[voteId - 1]);
+    return HttpResponse.json(DB.vote[voteId - 1]);
   }),
-  http.post(`${baseURL}/votes/:id`, async ({ request }) => {
+  post('/votes/:voteId', ({ params }) => {
     // 투표
-    await initHandler(request);
-    return HttpResponse.json(null, { status: 201 });
-  }),
-  http.get(`${baseURL}/votes/:id/comments`, async ({ params, request }) => {
-    // 댓글 전체 조회
-    await initHandler(request);
-    const voteId = Number(params.id);
+    const voteId = Number(params.voteId);
 
     if (isNaN(voteId)) {
-      return HttpResponse.json({ message: '유효하지 않은 요청입니다' }, { status: 400 });
+      return error('유효하지 않은 요청입니다', 400);
     }
-    if (voteId <= 0 || voteId > dataVote.length) {
-      return HttpResponse.json({ message: '투표를 찾을 수 없습니다' }, { status: 404 });
-    }
-    return HttpResponse.json({ content: dataComment });
-  }),
-  http.post(`${baseURL}/votes/:id/comments`, async ({ request }) => {
-    // 댓글 생성
-    await initHandler(request);
     return HttpResponse.json(null, { status: 201 });
+  }),
+  get('/votes/:voteId/comments', ({ params, request }) => {
+    // 댓글 조회
+    const voteId = Number(params.voteId);
+    const queryParams = getParams(request.url);
+    const pageIndex = Number(queryParams.get('page')) || 1;
+
+    if (isNaN(voteId)) {
+      return error('유효하지 않은 요청입니다', 400);
+    }
+    if (voteId <= 0 || voteId > DB.vote.length) {
+      return error('투표를 찾을 수 없습니다', 404);
+    }
+    return HttpResponse.json({
+      content: DB.comment,
+      pageInfo: { pageIndex, totalPageLength: 5, done: pageIndex === 5 },
+    });
+  }),
+  post('/votes/:voteId/comments', ({ params }) => {
+    // 댓글 생성
+    const voteId = Number(params.voteId);
+
+    if (isNaN(voteId)) {
+      return error('유효하지 않은 요청입니다', 400);
+    }
+    if (voteId <= 0 || voteId > DB.vote.length) {
+      return error('투표를 찾을 수 없습니다', 404);
+    }
+    return HttpResponse.json(null, { status: 201 });
+  }),
+  post('/votes/:voteId/comments/:commentId', ({ params }) => {
+    // 대댓글 생성
+    const voteId = Number(params.voteId);
+    const commentId = Number(params.commentId);
+
+    if (isNaN(voteId) || isNaN(commentId)) {
+      return error('유효하지 않은 요청입니다', 400);
+    }
+    if (voteId <= 0 || voteId > DB.vote.length) {
+      return error('투표를 찾을 수 없습니다', 404);
+    }
+    if (commentId <= 0 || commentId > DB.comment.length) {
+      return error('댓글을 찾을 수 없습니다', 404);
+    }
+    return HttpResponse.json(null, { status: 201 });
+  }),
+  get('/votes/:voteId/comments/:commentId/replies', ({ params, request }) => {
+    // 대댓글 조회
+    const voteId = Number(params.voteId);
+    const commentId = Number(params.commentId);
+    const queryParams = getParams(request.url);
+    const pageIndex = Number(queryParams.get('page')) || 1;
+
+    if (isNaN(voteId) || isNaN(commentId)) {
+      return error('유효하지 않은 요청입니다', 400);
+    }
+    if (voteId <= 0 || voteId > DB.vote.length) {
+      return error('투표를 찾을 수 없습니다', 404);
+    }
+    if (commentId <= 0 || commentId > DB.comment.length) {
+      return error('댓글을 찾을 수 없습니다', 404);
+    }
+    return HttpResponse.json({
+      content: DB.reply,
+      pageInfo: { pageIndex, totalPageLength: 5, done: pageIndex === 5 },
+    });
   }),
 ];

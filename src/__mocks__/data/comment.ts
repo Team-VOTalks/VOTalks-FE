@@ -1,6 +1,6 @@
 import type { Comment } from '@/entities/comment/types';
 
-export const dataComment: Comment[] = [
+export const comment: Comment[] = [
   {
     commentId: 1,
     userIndex: 1,

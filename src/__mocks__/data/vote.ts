@@ -3,7 +3,7 @@ import * as Shared from '@/shared';
 
 const voteCategory = Shared.constants.COMMUNITY_CATEGORIES;
 
-export const dataVote: Vote[] = [
+export const vote: Vote[] = [
   {
     voteId: 1,
     title: '프론트엔드 vs 백엔드 뭐가 더 꿀인가',

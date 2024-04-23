@@ -1,6 +1,6 @@
 import type { Reply } from '@/entities/comment/types';
 
-export const dataReply: Reply[] = [
+export const reply: Reply[] = [
   {
     replyId: 1,
     userIndex: 1,
