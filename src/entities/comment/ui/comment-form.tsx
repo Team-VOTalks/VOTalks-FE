@@ -13,7 +13,7 @@ export default function CommentForm({ voteId }: { voteId: string }) {
         autoComplete="off"
         placeholder="댓글을 입력해주세요"
         name="comment"
-        className="block h-12 max-h-60 min-h-12 w-full resize-none rounded border bg-gray-100 pb-3 pl-3 pr-12 pt-2 outline-none transition-colors placeholder:text-gray-500 focus:border-blue-500 focus:bg-gray-000 disabled:text-gray-500 sm:min-h-20"
+        className="block h-12 max-h-60 min-h-16 w-full resize-none rounded border bg-gray-100 pb-3 pl-3 pr-12 pt-2 outline-none transition-colors placeholder:text-gray-500 focus:border-blue-500 focus:bg-gray-000 disabled:text-gray-500 sm:min-h-20"
         onChange={handleResizeHeightOfTextarea}
       ></textarea>
       <button

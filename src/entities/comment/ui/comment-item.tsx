@@ -3,7 +3,7 @@
 import type { Comment } from '../types';
 import CommentContent from './comment-content';
 
-export default function CommentItem({ data }: { data: Comment }) {
+export default function CommentItem({ voteId, data }: { voteId: string; data: Comment }) {
   return (
     <div className="relative block">
       <CommentContent data={data} />
