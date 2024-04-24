@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useCallback, useRef } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { useQueryClient } from '@tanstack/react-query';
@@ -34,8 +34,8 @@ export default function useVoteForm() {
     remove(inputIdx);
   }, []);
 
-  const router = useRouter();
   const queryClient = useQueryClient();
+  const router = useRouter();
   const submitBtnRef = useRef<HTMLButtonElement | null>(null);
 
   const handleFormSubmit = handleSubmit((body, e) => {
@@ -57,11 +57,13 @@ export default function useVoteForm() {
           queryClient.refetchQueries({ queryKey: ['votes', category] }),
           queryClient.refetchQueries({ queryKey: ['votes', 'all'] }),
         ]);
-
-        const pathname = usePathname();
-        if (pathname === '/votes/new') router.push('/');
+        router.push('/');
       })
       .catch(err => {
+        if (submitBtnRef.current) {
+          submitBtnRef.current.disabled = false;
+          submitBtnRef.current.textContent = '투표 만들기';
+        }
         const { response } = err;
         const message = response?.data?.message ?? response?.statusText ?? '뭔가 잘못됐어요...';
         const status = response?.status ?? '???';
