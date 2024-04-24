@@ -7,8 +7,8 @@ const server = {
     const res = await fetch(baseURL + path);
 
     if (res.status >= 400) {
-      const data: CommonError = await res.json();
-      throw new Error(data?.message ?? '뭔가 잘못됐어요...');
+      const error: CommonError = await res.json();
+      throw new Error(error?.message ?? '뭔가 잘못됐어요...');
     }
     return { data: await res.json() };
   },

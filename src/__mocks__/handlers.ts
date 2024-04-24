@@ -106,7 +106,7 @@ export const handlers: HttpHandler[] = [
     }
     return HttpResponse.json(null, { status: 201 });
   }),
-  post('/votes/:voteId/comments/:commentId', ({ params }) => {
+  post('/votes/:voteId/comments/:commentId/replies', ({ params }) => {
     // 대댓글 생성
     const voteId = Number(params.voteId);
     const commentId = Number(params.commentId);

@@ -3,13 +3,13 @@ import * as Shared from '@/shared';
 
 export default async function getComments({
   voteId,
-  pageParam,
+  pageParam: page = 1,
 }: {
   voteId: string;
   pageParam?: number;
 }) {
   const { data } = await Shared.api.client.get<Comments>(`/votes/${voteId}/comments`, {
-    params: { page: pageParam ?? 1 },
+    params: { page },
   });
   return data;
 }

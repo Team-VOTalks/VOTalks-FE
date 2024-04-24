@@ -31,12 +31,12 @@ export default function useCommentForm({ voteId }: { voteId: string }) {
     e.preventDefault();
     if (!(textAreaRef.current && textAreaRef.current.value.trim())) return;
 
-    submitBtnRef.current!.disabled = true;
-    const commentValue = textAreaRef.current.value;
+    const content = textAreaRef.current.value;
     textAreaRef.current.disabled = true;
     textAreaRef.current.value = '댓글 작성 중...';
+    submitBtnRef.current!.disabled = true;
 
-    postComments(voteId, commentValue)
+    postComments({ voteId, content })
       .then(async () => {
         if (textAreaRef.current) textAreaRef.current.value = '데이터 불러오는 중...';
         await queryClient.refetchQueries({ queryKey: ['votes', voteId, 'comments'] });
@@ -47,7 +47,7 @@ export default function useCommentForm({ voteId }: { voteId: string }) {
         const message = response?.data?.message ?? response?.statusText ?? '뭔가 잘못됐어요...';
         const status = response?.status ?? '???';
         console.warn(`[${status}] ${message}`);
-        initValue(commentValue);
+        initValue(content);
       });
   }, []);
 

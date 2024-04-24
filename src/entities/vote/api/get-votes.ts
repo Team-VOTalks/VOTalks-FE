@@ -3,13 +3,13 @@ import * as Shared from '@/shared';
 
 export default async function getVotes({
   category,
-  pageParam,
+  pageParam: page = 1,
 }: {
   category?: string;
   pageParam?: number;
 }) {
   const { data } = await Shared.api.client.get<Votes>('/votes', {
-    params: { category, page: pageParam ?? 1 },
+    params: { category, page },
   });
   return data;
 }
