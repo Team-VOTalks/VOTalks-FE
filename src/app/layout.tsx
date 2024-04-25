@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Footer, Header } from '@/widgets';
+import * as Widgets from '@/widgets';
 import * as Shared from '@/shared';
 import initMSW from '@/__mocks__';
 
@@ -52,7 +52,7 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <script src="/script/theme.js"></script>
         <Shared.utils.QueryProvider>
-          <Header />
+          <Widgets.Header />
           <section
             id="contents"
             className="mx-auto mb-auto flex h-auto w-full max-w-5xl flex-grow flex-col items-stretch justify-start pt-14 sm:pt-16"
@@ -60,7 +60,7 @@ export default function RootLayout({
             {children}
             <div id="modal-root"></div>
           </section>
-          <Footer />
+          <Widgets.Footer />
         </Shared.utils.QueryProvider>
       </body>
     </html>
