@@ -8,10 +8,7 @@ import { W_PERCENT } from '../constants';
 import * as Shared from '@/shared';
 
 export default function VoteContent({ data, type }: { data: Vote; type: 'list' | 'detail' }) {
-  const isVoted = useMemo(
-    () => data.voteOption.some(({ isChecked }) => isChecked),
-    [data.voteOption],
-  );
+  const isVoted = useMemo(() => data.voteOption.some(e => e.isChecked), [data.voteOption]);
   return (
     <>
       <p className="mb-2 flex items-center justify-start gap-2 text-sm">
@@ -49,7 +46,7 @@ export default function VoteContent({ data, type }: { data: Vote; type: 'list' |
               className={`
                 ${
                   isVoted && isChecked
-                    ? 'border-blue-500 font-medium text-blue-500'
+                    ? 'border-blue-200 font-medium text-blue-500'
                     : isVoted
                       ? 'border-gray-200 bg-transparent'
                       : 'border-gray-100 bg-gray-100'

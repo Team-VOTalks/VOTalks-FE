@@ -7,7 +7,7 @@ export default async function getReplies({
   pageParam: page = 1,
 }: {
   voteId: string;
-  commentId: string;
+  commentId: number;
   pageParam?: number;
 }) {
   const { data } = await Shared.api.client.get<Replies>(

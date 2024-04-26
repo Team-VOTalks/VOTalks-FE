@@ -1,7 +1,12 @@
-import type { Comment } from '../types';
+'use client';
+
+import { useState } from 'react';
+import type { Comment, Reply } from '../types';
 import * as Shared from '@/shared';
 
-export default function CommentContent({ data }: { data: Comment }) {
+export default function CommentContent({ data }: { data: Comment | Reply }) {
+  const [] = useState();
+
   return (
     <>
       <p className="mb-1 flex items-center justify-start gap-1 px-1">
