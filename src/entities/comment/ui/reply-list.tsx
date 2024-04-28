@@ -15,7 +15,7 @@ export default function ReplyList({ voteId, commentId }: { voteId: string; comme
     </div>
   ) : isError ? (
     <div className="py-12 sm:py-20">
-      <Shared.ui.EmptyResult content="댓글 조회에 실패하였습니다" />
+      <Shared.ui.EmptyResult content="답글 조회에 실패하였습니다" />
     </div>
   ) : (
     <>
@@ -36,9 +36,7 @@ export default function ReplyList({ voteId, commentId }: { voteId: string; comme
             onClick={() => fetchNextPage()}
             disabled={isFetchingNextPage}
           >
-            <span className="pr-2">
-              {isFetchingNextPage ? '답글 불러오는 중...' : '답글 더보기'}
-            </span>
+            {isFetchingNextPage ? '답글 불러오는 중...' : '답글 더보기'}
           </button>
         </div>
       )}
